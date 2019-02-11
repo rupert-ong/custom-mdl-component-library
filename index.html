@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Component Library</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="content"></div>
+    <div id="tableContent"></div>
+
+    <script type="text/template" class="_tmpl-basic">
+      <p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
+      {{#if(this.skills)}}
+      <p>
+      	My skills are:
+      	<ul>
+      		{{#for(var index in this.skills)}}
+      		<li><a href="#" class="{{#if(this.skills[index] == 'css')}}red{{#endif}}">{{this.skills[index]}}</a></li>
+      		{{#endfor}}
+      	</ul>
+      	<p>
+      		{{#else}}
+      		<p>I have no skills.</p>
+      		{{#endif}}
+      		<div>Thanks for your time?</div>
+    </script>
+
+    <script type="text/template" class="_tmpl-table">
+      <table>
+      	<thead>
+      		{{#if(this.config.columns.length)}}
+      		<tr>
+      			{{#if(this.config.hasDetails)}}
+      			<th>x</th>
+      			{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th" data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}">
+      				{{this.config.columns[i].label}}
+      				</th>
+      				{{#endfor}}
+      		</tr>
+      		{{#endif}}
+      	</thead>
+      	<tbody>
+      	</tbody>
+      </table>
+    </script>
+
+    <script type="text/template" class="_tmpl-tableRow">
+      {{#if(this.data)}} {{#for(var i=0; i < this.data.length; i++)}} <tr>
+      	{{#if(this.config.hasDetails)}}
+      	<td>x</td>
+      	{{#endif}} {{#for(var j=0; j < this.config.columns.length; j++)}} <td>{{this.data[i][this.config.columns[j].key]}}</td>
+      		{{#endfor}}
+      		</tr>
+      		{{#endfor}} {{#else}}
+      		<tr>
+      			<td colspan="{{this.config.columns.length + (this.config.hasDetails ? 1 : 0)}}">No Data</td>
+      		</tr>
+      		{{#endif}}
+    </script>
+
+    <script src="src/mdl.core.js"></script>
+    <script src="src/mdl.template.js"></script>
+    <script src="src/mdl.table.js"></script>
+    <script src="src/index.js"></script>
+  </body>
+</html>
