@@ -85,7 +85,6 @@
       this._changeStateConfigSort(key, direction);
       this._changeStateSortData();
       this._renderTableBody();
-      console.log(this.state.config);
     },
 
     _changeStateConfigSort: function(key, direction) {

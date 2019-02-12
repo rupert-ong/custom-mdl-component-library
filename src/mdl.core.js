@@ -40,11 +40,17 @@ var MDL = {};
     if (!Array.isArray(arr)) return null;
     return arr.concat().sort(function(a, b) {
       if (key && (!hasProperty(a, key) || !hasProperty(b, key))) return 0;
-      if (direction === "asc") {
-        return key ? a[key] > b[key] : a > b;
-      } else {
-        return key ? b[key] > a[key] : b > a;
+
+      var sortA = key ? a[key] : a,
+        sortB = key ? b[key] : b,
+        comparison = 0;
+
+      if (sortA > sortB) {
+        comparison = 1;
+      } else if (sortA < sortB) {
+        comparison = -1;
       }
+      return direction == "desc" ? comparison * -1 : comparison;
     });
   }
 

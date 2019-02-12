@@ -55,7 +55,7 @@
         	{{#endfor}}
         	</tr>
        {{#if(this.config.detailsTemplateSelector)}}
-      <tr>
+      <tr class="_mdl-table-detailsRow">
       	<td colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data[i])}}</td>
       </tr>
       {{#endif}}
