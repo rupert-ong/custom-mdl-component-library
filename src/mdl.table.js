@@ -6,7 +6,7 @@
 
     var defaultConfig = {
       columns: null,
-      hasDetails: false,
+      detailsTemplateSelector: null,
       sort: {
         enabled: true,
         key: null,

@@ -17,7 +17,7 @@ var table = MDL.table("#tableContent", {
     { label: "Age", key: "age" },
     { label: "Birthday", key: "born", sortKey: "bornTimestamp" }
   ],
-  hasDetails: true
+  detailsTemplateSelector: "._tmpl-table-details"
 });
 
 var testData = [
@@ -50,7 +50,7 @@ var testData = [
     bornTimestamp: 229496400000
   },
   {
-    name: "Avian Gin",
+    name: "Aviator Gin",
     repos: 25,
     age: 41,
     born: "April 1, 1977",

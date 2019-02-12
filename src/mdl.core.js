@@ -84,6 +84,7 @@ var MDL = {};
   }
 
   mutate(_NS, {
+    name: "MDL",
     utils: {
       isObject: isObject,
       hasProperty: hasProperty,
@@ -95,3 +96,5 @@ var MDL = {};
     }
   });
 })(MDL);
+
+console.log(MDL);

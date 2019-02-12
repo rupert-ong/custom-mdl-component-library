@@ -31,7 +31,7 @@
       	<thead>
       		{{#if(this.config.columns.length)}}
       		<tr>
-      			{{#if(this.config.hasDetails)}}
+      			{{#if(this.config.detailsTemplateSelector)}}
       			<th>x</th>
       			{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th" data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}">
       				{{this.config.columns[i].label}}
@@ -46,17 +46,29 @@
     </script>
 
     <script type="text/template" class="_tmpl-tableRow">
-      {{#if(this.data)}} {{#for(var i=0; i < this.data.length; i++)}} <tr>
-      	{{#if(this.config.hasDetails)}}
-      	<td>x</td>
-      	{{#endif}} {{#for(var j=0; j < this.config.columns.length; j++)}} <td>{{this.data[i][this.config.columns[j].key]}}</td>
-      		{{#endfor}}
-      		</tr>
-      		{{#endfor}} {{#else}}
-      		<tr>
-      			<td colspan="{{this.config.columns.length + (this.config.hasDetails ? 1 : 0)}}">No Data</td>
-      		</tr>
-      		{{#endif}}
+          {{#if(this.data)}}
+        {{#for(var i=0; i < this.data.length; i++)}}
+        	<tr>
+        	{{#if(this.config.detailsTemplateSelector)}}<td>x</td>{{#endif}}
+        	{{#for(var j=0; j < this.config.columns.length; j++)}}
+        		<td>{{this.data[i][this.config.columns[j].key]}}</td>
+        	{{#endfor}}
+        	</tr>
+       {{#if(this.config.detailsTemplateSelector)}}
+      <tr>
+      	<td colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data[i])}}</td>
+      </tr>
+      {{#endif}}
+        {{#endfor}}
+          {{#else}}
+          	<tr>
+          		<td colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
+          	</tr>
+          {{#endif}}
+    </script>
+
+    <script type="text/template" class="_tmpl-table-details">
+      <div>This is the template for {{this.repos}}</div>
     </script>
 
     <script src="src/mdl.core.js"></script>

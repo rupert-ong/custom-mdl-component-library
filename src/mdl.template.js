@@ -5,6 +5,7 @@
     render: function(tpl, data) {
       var re = /{{([^}}]+)?}}/g,
         reControlFlow = /(^#[if|for|else|end])(.*)?/g,
+        reTemplate = /(^#render)(.*)?/g,
         code = "var r=[];\n",
         cursor = 0,
         match;
@@ -15,7 +16,16 @@
           return add;
         }
 
-        if (line.match(reControlFlow)) {
+        if (line.match(reTemplate)) {
+          code +=
+            "r.push(" +
+            line
+              .replace(/#/g, _NS.name + ".template.")
+              .replace(/\(/g, "(document.querySelector(")
+              .replace(/,/g, ").innerHTML, ")
+              .replace(/\)$/g, "));") +
+            "\n";
+        } else if (line.match(reControlFlow)) {
           code +=
             line
               .replace(/#/g, "")
@@ -35,6 +45,7 @@
 
       add(tpl.substring(cursor));
       code += 'return r.join("");';
+      console.log(code);
       return new Function(code.replace(/[\r\t\n]/g, "")).apply(data);
     }
   };
