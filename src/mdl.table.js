@@ -38,8 +38,6 @@
       data: data
     };
 
-    console.log("After sortConfig set:", this.state.config);
-
     this._renderTableHeader();
     this._changeStateSortData();
     this._renderTableBody();

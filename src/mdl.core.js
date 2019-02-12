@@ -96,5 +96,3 @@ var MDL = {};
     }
   });
 })(MDL);
-
-console.log(MDL);

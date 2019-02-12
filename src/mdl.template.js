@@ -45,7 +45,6 @@
 
       add(tpl.substring(cursor));
       code += 'return r.join("");';
-      console.log(code);
       return new Function(code.replace(/[\r\t\n]/g, "")).apply(data);
     }
   };
