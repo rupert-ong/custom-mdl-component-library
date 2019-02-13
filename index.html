@@ -4,6 +4,7 @@
 <head>
 	<title>Component Library</title>
 	<meta charset="UTF-8" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 	<link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
 </head>
 
@@ -32,7 +33,7 @@
 		<table class="_mdl-table mdl-table">
 			<thead>
 				{{#if(this.config.columns.length)}}
-				<tr>
+				<tr class="mdl-table__row">
 					{{#if(this.config.detailsTemplateSelector)}}
 					<th></th>
 					{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th mdl-table__header" data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}">
@@ -49,14 +50,14 @@
 
 	<script type="text/template" class="_tmpl-tableRow">
 		{{#if(this.data)}} {{#for(var i=0; i < this.data.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
-			{{#if(this.config.detailsTemplateSelector)}}<td><span class="_mdl-table-detailsToggle mdl-table__detailsToggle">x</span></td>{{#endif}}
+			{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__detailsToggle">x</span></td>{{#endif}}
         	{{#for(var j=0; j < this.config.columns.length; j++)}}
-        		<td>{{this.data[i][this.config.columns[j].key]}}</td>
+        		<td class="mdl-table__cell">{{this.data[i][this.config.columns[j].key]}}</td>
         	{{#endfor}}
         	</tr>
        {{#if(this.config.detailsTemplateSelector)}}
       <tr class="_mdl-table-rowDetails mdl-table__rowDetails">
-      	<td colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data[i])}}</td>
+      	<td class="mdl-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data[i])}}</td>
       </tr>
       {{#endif}}
         {{#endfor}}
