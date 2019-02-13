@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Component Library</title>
-    <meta charset="UTF-8" />
-  </head>
 
-  <body>
-    <div id="content"></div>
-    <div id="tableContent"></div>
+<head>
+	<title>Component Library</title>
+	<meta charset="UTF-8" />
+	<link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
+</head>
 
-    <script type="text/template" class="_tmpl-basic">
-      <p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
-      {{#if(this.skills)}}
-      <p>
-      	My skills are:
-      	<ul>
-      		{{#for(var index in this.skills)}}
-      		<li><a href="#" class="{{#if(this.skills[index] == 'css')}}red{{#endif}}">{{this.skills[index]}}</a></li>
-      		{{#endfor}}
-      	</ul>
-      	<p>
-      		{{#else}}
-      		<p>I have no skills.</p>
-      		{{#endif}}
-      		<div>Thanks for your time?</div>
-    </script>
+<body>
+	<div id="content"></div>
+	<div id="tableContent"></div>
 
-    <script type="text/template" class="_tmpl-table">
-      <table>
-      	<thead>
-      		{{#if(this.config.columns.length)}}
-      		<tr>
-      			{{#if(this.config.detailsTemplateSelector)}}
-      			<th>x</th>
-      			{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th" data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}">
-      				{{this.config.columns[i].label}}
-      				</th>
-      				{{#endfor}}
-      		</tr>
-      		{{#endif}}
-      	</thead>
-      	<tbody>
-      	</tbody>
-      </table>
-    </script>
+	<script type="text/template" class="_tmpl-basic">
+		<p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
+		{{#if(this.skills)}}
+		<p>
+			My skills are:
+			<ul>
+				{{#for(var index in this.skills)}}
+				<li><a href="#" class="{{#if(this.skills[index] == 'css')}}red{{#endif}}">{{this.skills[index]}}</a></li>
+				{{#endfor}}
+			</ul>
+			<p>
+				{{#else}}
+				<p>I have no skills.</p>
+				{{#endif}}
+				<div>Thanks for your time?</div>
+	</script>
 
-    <script type="text/template" class="_tmpl-tableRow">
-          {{#if(this.data)}}
-        {{#for(var i=0; i < this.data.length; i++)}}
-        	<tr>
-        	{{#if(this.config.detailsTemplateSelector)}}<td>x</td>{{#endif}}
+	<script type="text/template" class="_tmpl-table">
+		<table class="_mdl-table mdl-table">
+			<thead>
+				{{#if(this.config.columns.length)}}
+				<tr>
+					{{#if(this.config.detailsTemplateSelector)}}
+					<th></th>
+					{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th mdl-table__header" data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}">
+						{{this.config.columns[i].label}}
+						</th>
+						{{#endfor}}
+				</tr>
+				{{#endif}}
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</script>
+
+	<script type="text/template" class="_tmpl-tableRow">
+		{{#if(this.data)}} {{#for(var i=0; i < this.data.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
+			{{#if(this.config.detailsTemplateSelector)}}<td><span class="_mdl-table-detailsToggle mdl-table__detailsToggle">x</span></td>{{#endif}}
         	{{#for(var j=0; j < this.config.columns.length; j++)}}
         		<td>{{this.data[i][this.config.columns[j].key]}}</td>
         	{{#endfor}}
         	</tr>
        {{#if(this.config.detailsTemplateSelector)}}
-      <tr class="_mdl-table-detailsRow">
+      <tr class="_mdl-table-rowDetails mdl-table__rowDetails">
       	<td colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data[i])}}</td>
       </tr>
       {{#endif}}

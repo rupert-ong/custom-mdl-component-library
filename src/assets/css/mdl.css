@@ -1,0 +1,10 @@
+.mdl-table {
+  text-align: left;
+}
+
+.mdl-table__row + .mdl-table__rowDetails {
+  display: none;
+}
+.mdl-table__row--isExpanded + .mdl-table__rowDetails {
+  display: table-row;
+}

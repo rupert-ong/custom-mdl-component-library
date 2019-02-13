@@ -68,6 +68,8 @@
             this.state.config.sort.enabled
           ) {
             this._updateSortView(e.target.getAttribute("data-sort-key"));
+          } else if (e.target.classList.contains("_mdl-table-detailsToggle")) {
+            this._expandRowDetailsView(e.target);
           }
         }.bind(this)
       );
@@ -85,6 +87,12 @@
       this._changeStateConfigSort(key, direction);
       this._changeStateSortData();
       this._renderTableBody();
+    },
+
+    _expandRowDetailsView: function(elem) {
+      var parentRow = elem.closest("._mdl-table-row");
+      parentRow.classList.toggle("mdl-table__row--isExpanded");
+      console.log(elem, "expand");
     },
 
     _changeStateConfigSort: function(key, direction) {
