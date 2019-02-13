@@ -50,7 +50,7 @@
 
 	<script type="text/template" class="_tmpl-tableRow">
 		{{#if(this.data)}} {{#for(var i=0; i < this.data.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
-			{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__detailsToggle">x</span></td>{{#endif}}
+			{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__detailsToggle"></span></td>{{#endif}}
         	{{#for(var j=0; j < this.config.columns.length; j++)}}
         		<td class="mdl-table__cell">{{this.data[i][this.config.columns[j].key]}}</td>
         	{{#endfor}}

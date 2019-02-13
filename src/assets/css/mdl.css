@@ -5,6 +5,7 @@
 }
 
 body {
+  color: #1a1a1a;
   font-family: "Roboto", sans-serif;
 }
 
@@ -51,5 +52,23 @@ body {
 
 .mdl-table__cell--toggle {
   max-width: 36px;
+  padding: 0;
   width: 36px;
+}
+
+.mdl-table__detailsToggle {
+  background: url("/src/assets/images/baseline-expand_more-24px.svg") center
+    center/16px no-repeat;
+  cursor: pointer;
+  display: block;
+  height: 36px;
+  width: 36px;
+}
+
+.mdl-table__row--isExpanded .mdl-table__detailsToggle {
+  background-image: url("/src/assets/images/baseline-expand_less-24px.svg");
+}
+
+.mdl-table__rowDetails > td:first-child {
+  padding-top: 0;
 }
