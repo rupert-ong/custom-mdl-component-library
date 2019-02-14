@@ -36,9 +36,12 @@
 				<tr class="mdl-table__row">
 					{{#if(this.config.detailsTemplateSelector)}}
 					<th></th>
-					{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th mdl-table__header" data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}">
-						{{this.config.columns[i].label}}
-						</th>
+					{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th mdl-table__header" {{#if(this.config.sort.enabled)}}
+					 data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}" {{#endif}}>
+						{{this.config.columns[i].label}} {{#if(this.config.sort.enabled)}}
+						<span class="mdl-table__sort-icon"></span>
+              {{#endif}}
+					  </th>
 						{{#endfor}}
 				</tr>
 				{{#endif}}
@@ -50,20 +53,21 @@
 
 	<script type="text/template" class="_tmpl-tableRow">
 		{{#if(this.data)}} {{#for(var i=0; i < this.data.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
-			{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__detailsToggle"></span></td>{{#endif}}
-        	{{#for(var j=0; j < this.config.columns.length; j++)}}
+			{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__details-toggle"></span></td>{{#endif}}
+        	<!-- TODO: Add condition to check if template for column specified -->
+          {{#for(var j=0; j < this.config.columns.length; j++)}}
         		<td class="mdl-table__cell">{{this.data[i][this.config.columns[j].key]}}</td>
         	{{#endfor}}
         	</tr>
-       {{#if(this.config.detailsTemplateSelector)}}
-      <tr class="_mdl-table-rowDetails mdl-table__rowDetails">
+      {{#if(this.config.detailsTemplateSelector)}}
+      <tr class="_mdl-table-rowDetails mdl-table__row-details">
       	<td class="mdl-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data[i])}}</td>
       </tr>
       {{#endif}}
         {{#endfor}}
           {{#else}}
           	<tr>
-          		<td colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
+          		<td class="mdl-table__cell" colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
           	</tr>
           {{#endif}}
     </script>

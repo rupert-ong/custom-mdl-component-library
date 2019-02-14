@@ -39,9 +39,7 @@
     };
 
     this._renderTableHeader();
-    this._changeStateSortData();
-    this._renderTableBody();
-
+    this._sortDataAndRenderTableBody();
     this._addEventHandlers();
   }
 
@@ -85,14 +83,51 @@
             : "asc";
 
       this._changeStateConfigSort(key, direction);
+      this._sortDataAndRenderTableBody();
+    },
+
+    _updateSortHeaderView: function(key, direction) {
+      if (!Array.isArray(this.state.data) || !this.state.data.length) return;
+
+      var elem = document.querySelector(
+        this.selector +
+          " ._mdl-table > thead ._mdl-table-th[data-sort-key=" +
+          key +
+          "]"
+      );
+      if (elem === null) return;
+
+      var parentTable = elem.closest("._mdl-table"),
+        headers = parentTable.querySelectorAll("._mdl-table-th"),
+        i = 0,
+        CLASS_SORT_PREFIX = "mdl-table__header--sort-",
+        CLASS_SORT_ASC = CLASS_SORT_PREFIX + "asc",
+        CLASS_SORT_DESC = CLASS_SORT_PREFIX + "desc";
+
+      for (; i < headers.length; i++) {
+        var header = headers[i];
+        header.classList.contains(CLASS_SORT_ASC)
+          ? header.classList.remove(CLASS_SORT_ASC)
+          : header.classList.remove(CLASS_SORT_DESC);
+      }
+
+      elem.classList.add(CLASS_SORT_PREFIX + direction);
+    },
+
+    _sortDataAndRenderTableBody: function() {
       this._changeStateSortData();
+      if (this.state.config.sort.enabled) {
+        this._updateSortHeaderView(
+          this.state.config.sort.key,
+          this.state.config.sort.direction
+        );
+      }
       this._renderTableBody();
     },
 
     _expandRowDetailsView: function(elem) {
       var parentRow = elem.closest("._mdl-table-row");
-      parentRow.classList.toggle("mdl-table__row--isExpanded");
-      console.log(elem, "expand");
+      parentRow.classList.toggle("mdl-table__row--expanded");
     },
 
     _changeStateConfigSort: function(key, direction) {
@@ -116,12 +151,7 @@
 
     loadData: function(data) {
       this.state.data = data;
-      this._changeStateSortData();
-      this._renderTableBody();
-    },
-
-    getState: function() {
-      return this.state;
+      this._sortDataAndRenderTableBody();
     }
   };
 
