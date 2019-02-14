@@ -1,16 +1,16 @@
+// Template Example
 var data = {
   name: "Tan Gueray",
   profile: { age: 52 },
   skills: ["gin", "css", "kung-fu"]
 };
 
-var template = document.querySelector("._tmpl-basic").innerHTML;
-
 document.querySelector("#content").innerHTML = MDL.template.render(
-  template,
+  document.querySelector("._tmpl-basic").innerHTML,
   data
 );
 
+// Table Example
 var table = MDL.table("#tableContent", {
   columns: [
     { label: "Name", key: "name" },
