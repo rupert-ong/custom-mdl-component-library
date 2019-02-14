@@ -52,6 +52,7 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  white-space: nowrap;
 }
 
 .mdl-table__header[data-sort-key] {
@@ -66,6 +67,7 @@ body {
 .mdl-table__sort-icon {
   display: inline-block;
   height: 16px;
+  margin-left: 4px;
   vertical-align: text-top;
   width: 16px;
 }

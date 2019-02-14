@@ -11,6 +11,7 @@
 <body>
 	<div id="content"></div>
 	<div id="tableContent"></div>
+	<div id="pagination"></div>
 
 	<script type="text/template" class="_tmpl-basic">
 		<p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
@@ -22,11 +23,20 @@
 				<li><a href="#" class="{{#if(this.skills[index] == 'css')}}red{{#endif}}">{{this.skills[index]}}</a></li>
 				{{#endfor}}
 			</ul>
-			<p>
-				{{#else}}
-				<p>I have no skills.</p>
-				{{#endif}}
-				<div>Thanks for your time?</div>
+		</p>
+		{{#else}}
+		<p>I have no skills.</p>
+		{{#endif}}
+		<div>Thanks for your time?</div>
+	</script>
+
+	<script type="text/template" class="_tmpl-pagination">
+		<div class="_mdl-pagination">
+			<button class="_mdl-pagination-first">First</button>
+			<button class="_mdl-pagination-prev">Previous</button>
+			<button class="_mdl-pagination-next">Next</button>
+			<button class="_mdl-pagination-last">Last</button>
+		</div>
 	</script>
 
 	<script type="text/template" class="_tmpl-table">
@@ -34,15 +44,12 @@
 			<thead>
 				{{#if(this.config.columns.length)}}
 				<tr class="mdl-table__row">
-					{{#if(this.config.detailsTemplateSelector)}}
+				{{#if(this.config.detailsTemplateSelector)}}
 					<th></th>
-					{{#endif}} {{#for(var i=0; i < this.config.columns.length; i++)}} <th class="_mdl-table-th mdl-table__header" {{#if(this.config.sort.enabled)}}
-					 data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}" {{#endif}}>
-						{{this.config.columns[i].label}} {{#if(this.config.sort.enabled)}}
-						<span class="mdl-table__sort-icon"></span>
-              {{#endif}}
-					  </th>
-						{{#endfor}}
+					{{#endif}}
+					{{#for(var i=0; i < this.config.columns.length; i++)}}
+					<th class="_mdl-table-th mdl-table__header" {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}>{{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdl-table__sort-icon"></span>{{#endif}}</th>
+					{{#endfor}}
 				</tr>
 				{{#endif}}
 			</thead>
@@ -78,6 +85,7 @@
 
     <script src="src/mdl.core.js"></script>
     <script src="src/mdl.template.js"></script>
+    <script src="src/mdl.pagination.js"></script>
     <script src="src/mdl.table.js"></script>
     <script src="src/index.js"></script>
   </body>
