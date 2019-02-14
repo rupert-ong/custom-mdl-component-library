@@ -9,7 +9,8 @@
       total: 0,
       current: 1,
       callback: null,
-      totalPages: 0
+      totalPages: 0,
+      callback: null
     };
 
     var config = _NS.utils.extend(true, defaultConfig, userConfig);
@@ -21,6 +22,7 @@
     };
     this._addEventHandlers();
     this._render();
+    this._update();
   }
 
   Pagination.prototype = {
@@ -43,7 +45,7 @@
             stateConfig.current = stateConfig.totalPages;
           }
           console.log(stateConfig.current);
-          // update UI to reflect state
+          this._update();
         }.bind(this)
       );
     },
@@ -52,6 +54,31 @@
         Pagination.template,
         null
       );
+    },
+    _update: function() {
+      var buttons = document.querySelectorAll(this.selector + " button"),
+        stateConfig = this.state.config,
+        current = stateConfig.current,
+        last = stateConfig.totalPages,
+        i = 0;
+
+      for (; i < buttons.length; i++) {
+        var button = buttons[i],
+          classTokenList = button.classList;
+
+        button.removeAttribute("disabled");
+
+        if (
+          (current === 1 &&
+            (classTokenList.contains("_mdl-pagination-first") ||
+              classTokenList.contains("_mdl-pagination-prev"))) ||
+          (current === last &&
+            (classTokenList.contains("_mdl-pagination-next") ||
+              classTokenList.contains("_mdl-pagination-last")))
+        ) {
+          button.disabled = true;
+        }
+      }
     }
   };
 
