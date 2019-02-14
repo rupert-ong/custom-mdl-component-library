@@ -68,6 +68,6 @@ var testData = [
 table.loadData(testData);
 
 // Pagination Example
-var pagination = MDL.pagination("#pagination", {
+/* var pagination = MDL.pagination("#pagination", {
   total: 201
-});
+}); */

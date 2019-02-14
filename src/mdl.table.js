@@ -11,6 +11,9 @@
         enabled: true,
         key: null,
         direction: "asc"
+      },
+      pagination: {
+        enabled: true
       }
     };
 
@@ -33,6 +36,7 @@
     }
 
     this.selector = selector;
+    this.domRef = document.querySelector(this.selector);
     this.state = {
       config: config,
       data: data
@@ -40,15 +44,13 @@
 
     this._renderTableHeader();
     this._sortDataAndRenderTableBody();
+    // this._renderPagination();
     this._addEventHandlers();
   }
 
   Table.prototype = {
     _renderTableHeader: function() {
-      document.querySelector(this.selector).innerHTML = _NS.template.render(
-        Table.template,
-        this.state
-      );
+      this.domRef.innerHTML = _NS.template.render(Table.template, this.state);
     },
 
     _renderTableBody: function() {
@@ -57,8 +59,30 @@
       ).innerHTML = _NS.template.render(Table.rowTemplate, this.state);
     },
 
+    _renderPagination: function() {
+      if (
+        !this.state.config.pagination.enabled ||
+        !_NS.utils.hasPropertyAndIsNotEmpty(this.state, "data")
+      )
+        return;
+
+      var paginationSelector = "._mdl-table-pagination",
+        paginationElem = this.domRef.querySelector(paginationSelector);
+
+      if (!paginationElem) {
+        var paginationContainer = document.createElement("div");
+        paginationContainer.classList.add(paginationSelector.slice(1));
+        this.domRef.appendChild(paginationContainer);
+      }
+
+      _NS.pagination(paginationSelector, {
+        limit: 2,
+        total: this.state.data.length
+      });
+    },
+
     _addEventHandlers: function() {
-      document.querySelector(this.selector).addEventListener(
+      this.domRef.addEventListener(
         "click",
         function(e) {
           if (
@@ -152,6 +176,7 @@
     loadData: function(data) {
       this.state.data = data;
       this._sortDataAndRenderTableBody();
+      this._renderPagination();
     }
   };
 

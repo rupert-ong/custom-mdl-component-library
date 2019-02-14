@@ -59,7 +59,7 @@
       var buttons = document.querySelectorAll(this.selector + " button"),
         stateConfig = this.state.config,
         current = stateConfig.current,
-        last = stateConfig.totalPages,
+        totalPages = stateConfig.totalPages,
         i = 0;
 
       for (; i < buttons.length; i++) {
@@ -72,9 +72,10 @@
           (current === 1 &&
             (classTokenList.contains("_mdl-pagination-first") ||
               classTokenList.contains("_mdl-pagination-prev"))) ||
-          (current === last &&
+          (current === totalPages &&
             (classTokenList.contains("_mdl-pagination-next") ||
-              classTokenList.contains("_mdl-pagination-last")))
+              classTokenList.contains("_mdl-pagination-last"))) ||
+          totalPages === 0
         ) {
           button.disabled = true;
         }
