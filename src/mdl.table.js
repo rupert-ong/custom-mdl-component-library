@@ -13,7 +13,9 @@
         direction: "asc"
       },
       pagination: {
-        enabled: true
+        enabled: true,
+        limit: 20,
+        current: 1
       }
     };
 
@@ -39,12 +41,15 @@
     this.domRef = document.querySelector(this.selector);
     this.state = {
       config: config,
-      data: data
+      data: {
+        all: data,
+        rendered: Array.isArray(data) ? data.slice() : null
+      }
     };
 
     this._renderTableHeader();
     this._sortDataAndRenderTableBody();
-    // this._renderPagination();
+    this.pagination = this._renderPagination();
     this._addEventHandlers();
   }
 
@@ -62,12 +67,13 @@
     _renderPagination: function() {
       if (
         !this.state.config.pagination.enabled ||
-        !_NS.utils.hasPropertyAndIsNotEmpty(this.state, "data")
+        !_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, "all")
       )
-        return;
+        return null;
 
       var paginationSelector = "._mdl-table-pagination",
-        paginationElem = this.domRef.querySelector(paginationSelector);
+        paginationElem = this.domRef.querySelector(paginationSelector),
+        paginationConfig = this.state.config.pagination;
 
       if (!paginationElem) {
         var paginationContainer = document.createElement("div");
@@ -75,10 +81,18 @@
         this.domRef.appendChild(paginationContainer);
       }
 
-      _NS.pagination(paginationSelector, {
-        limit: 2,
-        total: this.state.data.length
+      return _NS.pagination(paginationSelector, {
+        limit: paginationConfig.limit,
+        current: paginationConfig.current,
+        total: this.state.data.all.length,
+        callback: this._paginationCallback.bind(this)
       });
+    },
+
+    _paginationCallback: function(current) {
+      this.state.config.pagination.current = current;
+      this._changeStateRenderData();
+      this._renderTableBody();
     },
 
     _addEventHandlers: function() {
@@ -111,7 +125,8 @@
     },
 
     _updateSortHeaderView: function(key, direction) {
-      if (!Array.isArray(this.state.data) || !this.state.data.length) return;
+      if (!Array.isArray(this.state.data.all) || !this.state.data.all.length)
+        return;
 
       var elem = document.querySelector(
         this.selector +
@@ -139,13 +154,12 @@
     },
 
     _sortDataAndRenderTableBody: function() {
+      var sortConfig = this.state.config.sort;
       this._changeStateSortData();
-      if (this.state.config.sort.enabled) {
-        this._updateSortHeaderView(
-          this.state.config.sort.key,
-          this.state.config.sort.direction
-        );
+      if (sortConfig.enabled) {
+        this._updateSortHeaderView(sortConfig.key, sortConfig.direction);
       }
+      this._changeStateRenderData();
       this._renderTableBody();
     },
 
@@ -166,17 +180,39 @@
     },
 
     _changeStateSortData: function() {
-      this.state.data = _NS.utils.sortArray(
-        this.state.data,
+      this.state.data.all = _NS.utils.sortArray(
+        this.state.data.all,
         this.state.config.sort.direction,
         this.state.config.sort.key
       );
     },
 
+    _changeStateRenderData: function() {
+      var paginationConfig = this.state.config.pagination,
+        current = paginationConfig.current,
+        limit = paginationConfig.limit;
+
+      if (!_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, "all")) {
+        this.state.data.rendered = null;
+        return;
+      }
+
+      if (paginationConfig.enabled) {
+        this.state.data.rendered = this.state.data.all.slice(
+          (current - 1) * limit,
+          current * limit
+        );
+      } else {
+        this.state.data.rendered = this.state.data.all.slice();
+      }
+    },
+
     loadData: function(data) {
-      this.state.data = data;
+      this.state.data.all = data;
+      this.state.data.rendered = data.slice();
+      this.state.config.pagination.current = 1;
       this._sortDataAndRenderTableBody();
-      this._renderPagination();
+      this.pagination = this._renderPagination();
     }
   };
 

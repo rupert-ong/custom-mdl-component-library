@@ -17,10 +17,45 @@ var table = MDL.table("#tableContent", {
     { label: "Age", key: "age" },
     { label: "Birthday", key: "born", sortKey: "bornTimestamp" }
   ],
-  detailsTemplateSelector: "._tmpl-table-details"
+  detailsTemplateSelector: "._tmpl-table-details",
+  pagination: {
+    // enabled: false,
+    limit: 2
+  }
 });
 
-var testData = [
+var testData1 = [
+  {
+    name: "Ketel One",
+    age: 7,
+    repos: 0,
+    born: "September 3, 2010",
+    bornTimestamp: 1283486400000
+  },
+  {
+    name: "Yellowstone Bourbon",
+    age: 50,
+    repos: 205,
+    born: "May 17, 1968",
+    bornTimestamp: -51307200000
+  },
+  {
+    name: "Carpano Antica Formula",
+    age: 255,
+    repos: 9831,
+    born: "January 2, 1764",
+    bornTimestamp: -6500631838000
+  },
+  {
+    name: "Mezcal Creyente",
+    age: 2,
+    repos: 10,
+    born: "March 15, 2016",
+    bornTimestamp: 1458014400000
+  }
+];
+
+var testData2 = [
   {
     name: "Jim Bean",
     age: 56,
@@ -65,9 +100,11 @@ var testData = [
   }
 ];
 
-table.loadData(testData);
-
-// Pagination Example
-/* var pagination = MDL.pagination("#pagination", {
-  total: 201
-}); */
+document
+  .querySelector("._changeTableData")
+  .addEventListener("click", function(e) {
+    var btn = e.target,
+      key = btn.getAttribute("data-key");
+    table.loadData(key == 1 ? testData1 : testData2);
+    btn.setAttribute("data-key", key == 1 ? "2" : "1");
+  });

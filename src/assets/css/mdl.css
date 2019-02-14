@@ -13,6 +13,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+/* Table */
 .mdl-table {
   border-collapse: collapse;
   font-size: 14px;
@@ -103,4 +104,9 @@ body {
 
 .mdl-table__row-details > td:first-child {
   padding-top: 0;
+}
+
+/* Pagination */
+.mdl-pagination {
+  padding: 16px;
 }

@@ -20,6 +20,7 @@
     this.state = {
       config: config
     };
+
     this._addEventHandlers();
     this._render();
     this._update();
@@ -44,8 +45,10 @@
           } else if (classTokenList.contains("_mdl-pagination-last")) {
             stateConfig.current = stateConfig.totalPages;
           }
-          console.log(stateConfig.current);
           this._update();
+
+          if (typeof stateConfig.callback === "function")
+            stateConfig.callback(stateConfig.current);
         }.bind(this)
       );
     },
