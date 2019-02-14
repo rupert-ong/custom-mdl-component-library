@@ -105,6 +105,6 @@ document
   .addEventListener("click", function(e) {
     var btn = e.target,
       key = btn.getAttribute("data-key");
-    table.loadData(key == 1 ? testData1 : testData2);
-    btn.setAttribute("data-key", key == 1 ? "2" : "1");
+    table.loadData(key === "1" ? testData1 : testData2);
+    btn.setAttribute("data-key", key === "1" ? "2" : "1");
   });
