@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.red {
+  color: red;
+}
+
 body {
   color: #1a1a1a;
   font-family: "Roboto", sans-serif;
