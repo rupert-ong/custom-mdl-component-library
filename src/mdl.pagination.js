@@ -53,9 +53,7 @@
             );
           }
           this._update();
-
-          if (typeof stateConfig.callback === "function")
-            stateConfig.callback(stateConfig.current);
+          this._runCallback();
         }.bind(this)
       );
       this.domRef.addEventListener(
@@ -64,9 +62,7 @@
           if (e.target.classList.contains("_mdl-pagination-pageSelect")) {
             stateConfig.current = Number(e.target.value);
             this._update();
-
-            if (typeof stateConfig.callback === "function")
-              stateConfig.callback(stateConfig.current);
+            this._runCallback();
           }
         }.bind(this)
       );
@@ -91,6 +87,11 @@
       nextBtn.disabled =
         totalPages === 0 || current === totalPages ? true : false;
       if (pageSelect.value !== current) pageSelect.value = current;
+    },
+    _runCallback: function() {
+      var stateConfig = this.state.config;
+      if (typeof stateConfig.callback === "function")
+        stateConfig.callback(stateConfig.current, stateConfig.rowsPerPage);
     }
   };
 

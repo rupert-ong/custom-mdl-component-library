@@ -92,8 +92,9 @@
       });
     },
 
-    _paginationCallback: function(current) {
+    _paginationCallback: function(current, rowsPerPage) {
       this.state.config.pagination.current = current;
+      this.state.config.pagination.rowsPerPage = rowsPerPage;
       this._changeStateRenderData();
       this._renderTableBody();
     },
