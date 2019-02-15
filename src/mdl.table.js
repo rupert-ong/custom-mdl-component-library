@@ -14,7 +14,7 @@
       },
       pagination: {
         enabled: true,
-        limit: 20,
+        rowsPerPage: 20,
         current: 1
       }
     };
@@ -82,9 +82,9 @@
       }
 
       return _NS.pagination(paginationSelector, {
-        limit: paginationConfig.limit,
+        rowsPerPage: paginationConfig.rowsPerPage,
         current: paginationConfig.current,
-        total: this.state.data.all.length,
+        totalRows: this.state.data.all.length,
         callback: this._paginationCallback.bind(this)
       });
     },
@@ -190,7 +190,7 @@
     _changeStateRenderData: function() {
       var paginationConfig = this.state.config.pagination,
         current = paginationConfig.current,
-        limit = paginationConfig.limit;
+        rowsPerPage = paginationConfig.rowsPerPage;
 
       if (!_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, "all")) {
         this.state.data.rendered = null;
@@ -199,8 +199,8 @@
 
       if (paginationConfig.enabled) {
         this.state.data.rendered = this.state.data.all.slice(
-          (current - 1) * limit,
-          current * limit
+          (current - 1) * rowsPerPage,
+          current * rowsPerPage
         );
       } else {
         this.state.data.rendered = this.state.data.all.slice();

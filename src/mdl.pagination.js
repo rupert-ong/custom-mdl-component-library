@@ -5,16 +5,15 @@
     if (!selector || !_NS.utils.isObject(userConfig)) return;
 
     var defaultConfig = {
-      limit: 10,
-      total: 0,
+      rowsPerPage: 10,
+      totalRows: 0,
       current: 1,
       callback: null,
-      totalPages: 0,
-      callback: null
+      totalPages: 0
     };
 
     var config = _NS.utils.extend(true, defaultConfig, userConfig);
-    config.totalPages = Math.ceil(config.total / config.limit);
+    config.totalPages = Math.ceil(config.totalRows / config.rowsPerPage);
 
     this.selector = selector;
     this.state = {
