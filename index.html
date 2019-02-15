@@ -35,17 +35,25 @@
     </script>
 
     <script type="text/template" class="_tmpl-pagination">
-        <div class="_mdl-pagination mdl-pagination">
-      Page:
-        	<select class="_mdl-pagination-pageSelect">
-        		{{#for(var i = 1; i <= this.totalPages; i++)}}
-        		<option value="{{i}}">{{i}}</option>
-        		{{#endfor}}
-        	</select>
-        	of {{this.totalPages}}
-        	<button class="_mdl-pagination-prev">Previous</button>
-        	<button class="_mdl-pagination-next">Next</button>
-        </div>
+         <div class="_mdl-pagination mdl-pagination">
+      Rows Per Page:
+      <select class="_mdl-pagination-rowsPerPageSelect">
+      	{{#for(var i = 0; i < this.rowsPerPageOpts.length; i++)}}
+      	<option value="{{this.rowsPerPageOpts[i]}}">{{this.rowsPerPageOpts[i]}}</option>
+      	{{#endfor}}
+      </select>
+      <span class="_mdl-pagination-pageSelectContainer"></span>
+         	<button class="_mdl-pagination-prev">Previous</button>
+         	<button class="_mdl-pagination-next">Next</button>
+         </div>
+    </script>
+
+    <script type="text/template" class="_tmpl-paginationPageSelect">
+       Page:
+      <select class="_mdl-pagination-pageSelect">
+      	 {{#for(var i = 1; i <=this.totalPages; i++)}}<option value="{{i}}">{{i}}</option>{{#endfor}}
+      </select>
+      of {{this.totalPages}}
     </script>
 
     <script type="text/template" class="_tmpl-table">

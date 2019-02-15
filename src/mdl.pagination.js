@@ -5,7 +5,8 @@
     if (!selector || !_NS.utils.isObject(userConfig)) return;
 
     var defaultConfig = {
-      rowsPerPage: 10,
+      rowsPerPage: 5,
+      rowsPerPageOpts: [1, 2, 5],
       totalRows: 0,
       current: 1,
       callback: null,
@@ -23,10 +24,19 @@
 
     this._addEventHandlers();
     this._render();
+    this._renderPageSelect();
     this._update();
   }
 
   Pagination.prototype = {
+    _renderPageSelect: function() {
+      this.domRef.querySelector(
+        "._mdl-pagination-pageSelectContainer"
+      ).innerHTML = _NS.template.render(
+        Pagination.pageSelectTemplate,
+        this.state.config
+      );
+    },
     _addEventHandlers: function() {
       var stateConfig = this.state.config;
 
@@ -56,14 +66,34 @@
           this._runCallback();
         }.bind(this)
       );
+
       this.domRef.addEventListener(
         "change",
         function(e) {
-          if (e.target.classList.contains("_mdl-pagination-pageSelect")) {
-            stateConfig.current = Number(e.target.value);
-            this._update();
-            this._runCallback();
+          var classTokenList = e.target.classList;
+
+          if (
+            !(
+              classTokenList.contains("_mdl-pagination-pageSelect") ||
+              classTokenList.contains("_mdl-pagination-rowsPerPageSelect")
+            )
+          ) {
+            return false;
           }
+
+          if (classTokenList.contains("_mdl-pagination-pageSelect")) {
+            stateConfig.current = Number(e.target.value);
+          } else {
+            stateConfig.current = 1;
+            stateConfig.rowsPerPage = Number(e.target.value);
+            stateConfig.totalPages = Math.ceil(
+              stateConfig.totalRows / stateConfig.rowsPerPage
+            );
+            this._renderPageSelect();
+          }
+
+          this._update();
+          this._runCallback();
         }.bind(this)
       );
     },
@@ -74,20 +104,25 @@
       );
     },
     _update: function() {
-      var pageSelect = this.domRef.querySelector("._mdl-pagination-pageSelect"),
+      var rowsPerPageSelect = this.domRef.querySelector(
+          "._mdl-pagination-rowsPerPageSelect"
+        ),
+        pageSelect = this.domRef.querySelector("._mdl-pagination-pageSelect"),
         prevBtn = this.domRef.querySelector("._mdl-pagination-prev"),
         nextBtn = this.domRef.querySelector("._mdl-pagination-next"),
         stateConfig = this.state.config,
         current = stateConfig.current,
+        rowsPerPage = stateConfig.rowsPerPage,
         totalPages = stateConfig.totalPages;
-
-      console.log("current page is ", current, "total is ", totalPages);
 
       prevBtn.disabled = totalPages === 0 || current === 1 ? true : false;
       nextBtn.disabled =
         totalPages === 0 || current === totalPages ? true : false;
       if (pageSelect.value !== current) pageSelect.value = current;
+      if (rowsPerPageSelect.value !== rowsPerPage)
+        rowsPerPageSelect.value = rowsPerPage;
     },
+
     _runCallback: function() {
       var stateConfig = this.state.config;
       if (typeof stateConfig.callback === "function")
@@ -96,6 +131,9 @@
   };
 
   Pagination.template = document.querySelector("._tmpl-pagination").innerHTML;
+  Pagination.pageSelectTemplate = document.querySelector(
+    "._tmpl-paginationPageSelect"
+  ).innerHTML;
 
   _NS.pagination = function(selector, config) {
     return new Pagination(selector, config);
