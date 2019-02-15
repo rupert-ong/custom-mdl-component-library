@@ -14,7 +14,8 @@
       },
       pagination: {
         enabled: true,
-        rowsPerPage: 20,
+        rowsPerPage: _NS.defaults.pagination.rowsPerPage,
+        rowsPerPageOpts: _NS.defaults.pagination.rowsPerPageOpts.slice(),
         current: 1
       }
     };
@@ -86,6 +87,7 @@
 
       return _NS.pagination(paginationSelector, {
         rowsPerPage: paginationConfig.rowsPerPage,
+        rowsPerPageOpts: paginationConfig.rowsPerPageOpts,
         current: paginationConfig.current,
         totalRows: this.state.data.all.length,
         callback: this._paginationCallback.bind(this)

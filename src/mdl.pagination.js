@@ -5,8 +5,8 @@
     if (!selector || !_NS.utils.isObject(userConfig)) return;
 
     var defaultConfig = {
-      rowsPerPage: 5,
-      rowsPerPageOpts: [1, 2, 5],
+      rowsPerPage: _NS.defaults.pagination.rowsPerPage,
+      rowsPerPageOpts: _NS.defaults.pagination.rowsPerPageOpts.slice(),
       totalRows: 0,
       current: 1,
       callback: null,

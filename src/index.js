@@ -20,7 +20,8 @@ var table = MDL.table("#tableContent", {
   detailsTemplateSelector: "._tmpl-table-details",
   pagination: {
     // enabled: false,
-    rowsPerPage: 2
+    rowsPerPage: 2,
+    rowsPerPageOpts: [1, 2, 4]
   }
 });
 

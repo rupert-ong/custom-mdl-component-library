@@ -99,6 +99,12 @@ var MDL = {};
       sortArray: sortArray,
       mutate: mutate,
       extend: extend
+    },
+    defaults: {
+      pagination: {
+        rowsPerPage: 10,
+        rowsPerPageOpts: [10, 25, 50]
+      }
     }
   });
 })(MDL);
