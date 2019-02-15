@@ -16,6 +16,7 @@
     config.totalPages = Math.ceil(config.totalRows / config.rowsPerPage);
 
     this.selector = selector;
+    this.domRef = document.querySelector(this.selector);
     this.state = {
       config: config
     };
@@ -27,22 +28,29 @@
 
   Pagination.prototype = {
     _addEventHandlers: function() {
-      document.querySelector(this.selector).addEventListener(
+      var stateConfig = this.state.config;
+
+      this.domRef.addEventListener(
         "click",
         function(e) {
-          var classTokenList = e.target.classList,
-            stateConfig = this.state.config;
-          if (classTokenList.contains("_mdl-pagination-first")) {
-            stateConfig.current = 1;
-          } else if (classTokenList.contains("_mdl-pagination-prev")) {
+          var classTokenList = e.target.classList;
+
+          if (
+            !(
+              classTokenList.contains("_mdl-pagination-prev") ||
+              classTokenList.contains("_mdl-pagination-next")
+            )
+          ) {
+            return false;
+          }
+
+          if (classTokenList.contains("_mdl-pagination-prev")) {
             stateConfig.current = Math.max(1, stateConfig.current - 1);
-          } else if (classTokenList.contains("_mdl-pagination-next")) {
+          } else {
             stateConfig.current = Math.min(
               stateConfig.totalPages,
               stateConfig.current + 1
             );
-          } else if (classTokenList.contains("_mdl-pagination-last")) {
-            stateConfig.current = stateConfig.totalPages;
           }
           this._update();
 
@@ -50,38 +58,39 @@
             stateConfig.callback(stateConfig.current);
         }.bind(this)
       );
+      this.domRef.addEventListener(
+        "change",
+        function(e) {
+          if (e.target.classList.contains("_mdl-pagination-pageSelect")) {
+            stateConfig.current = Number(e.target.value);
+            this._update();
+
+            if (typeof stateConfig.callback === "function")
+              stateConfig.callback(stateConfig.current);
+          }
+        }.bind(this)
+      );
     },
     _render: function() {
-      document.querySelector(this.selector).innerHTML = _NS.template.render(
+      this.domRef.innerHTML = _NS.template.render(
         Pagination.template,
-        null
+        this.state.config
       );
     },
     _update: function() {
-      var buttons = document.querySelectorAll(this.selector + " button"),
+      var pageSelect = this.domRef.querySelector("._mdl-pagination-pageSelect"),
+        prevBtn = this.domRef.querySelector("._mdl-pagination-prev"),
+        nextBtn = this.domRef.querySelector("._mdl-pagination-next"),
         stateConfig = this.state.config,
         current = stateConfig.current,
-        totalPages = stateConfig.totalPages,
-        i = 0;
+        totalPages = stateConfig.totalPages;
 
-      for (; i < buttons.length; i++) {
-        var button = buttons[i],
-          classTokenList = button.classList;
+      console.log("current page is ", current, "total is ", totalPages);
 
-        button.removeAttribute("disabled");
-
-        if (
-          (current === 1 &&
-            (classTokenList.contains("_mdl-pagination-first") ||
-              classTokenList.contains("_mdl-pagination-prev"))) ||
-          (current === totalPages &&
-            (classTokenList.contains("_mdl-pagination-next") ||
-              classTokenList.contains("_mdl-pagination-last"))) ||
-          totalPages === 0
-        ) {
-          button.disabled = true;
-        }
-      }
+      prevBtn.disabled = totalPages === 0 || current === 1 ? true : false;
+      nextBtn.disabled =
+        totalPages === 0 || current === totalPages ? true : false;
+      if (pageSelect.value !== current) pageSelect.value = current;
     }
   };
 

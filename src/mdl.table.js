@@ -75,11 +75,14 @@
         paginationElem = this.domRef.querySelector(paginationSelector),
         paginationConfig = this.state.config.pagination;
 
-      if (!paginationElem) {
-        var paginationContainer = document.createElement("div");
-        paginationContainer.classList.add(paginationSelector.slice(1));
-        this.domRef.appendChild(paginationContainer);
+      if (paginationElem) {
+        this.domRef.removeChild(paginationElem);
+        paginationElem = null;
       }
+
+      var paginationContainer = document.createElement("div");
+      paginationContainer.classList.add(paginationSelector.slice(1));
+      this.domRef.appendChild(paginationContainer);
 
       return _NS.pagination(paginationSelector, {
         rowsPerPage: paginationConfig.rowsPerPage,

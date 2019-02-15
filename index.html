@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Component Library</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+      rel="stylesheet"
+    />
+    <link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
+  </head>
 
-<head>
-	<title>Component Library</title>
-	<meta charset="UTF-8" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-	<link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
-</head>
+  <body>
+    <h2>Template Example</h2>
+    <div id="content"></div>
+    <h2>Table Example</h2>
+    <button class="_changeTableData" data-key="1">Change Data</button>
+    <div id="tableContent"></div>
 
-<body>
-	<h2>Template Example</h2>
-	<div id="content"></div>
-	<h2>Table Example</h2>
-	<button class="_changeTableData" data-key="1">Change Data</button>
-	<div id="tableContent"></div>
-	
-	<script type="text/template" class="_tmpl-basic">
-		<p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
-		{{#if(this.skills)}}
-		<p>
-			My skills are:
-			<ul>
-				{{#for(var index in this.skills)}}
-				<li><a href="#" class="{{#if(this.skills[index] == 'css')}}red{{#endif}}">{{this.skills[index]}}</a></li>
-				{{#endfor}}
-			</ul>
-		</p>
-		{{#else}}
-		<p>I have no skills.</p>
-		{{#endif}}
-		<div>Thanks for your time?</div>
-	</script>
-
-	<script type="text/template" class="_tmpl-pagination">
-		<div class="_mdl-pagination mdl-pagination">
-			<button class="_mdl-pagination-first">First</button>
-			<button class="_mdl-pagination-prev">Previous</button>
-			<button class="_mdl-pagination-next">Next</button>
-			<button class="_mdl-pagination-last">Last</button>
-		</div>
-	</script>
-
-	<script type="text/template" class="_tmpl-table">
-		<table class="_mdl-table mdl-table">
-			<thead>
-				{{#if(this.config.columns.length)}}
-				<tr class="mdl-table__row">
-				{{#if(this.config.detailsTemplateSelector)}}
-					<th></th>
-					{{#endif}}
-					{{#for(var i=0; i < this.config.columns.length; i++)}}
-					<th class="_mdl-table-th mdl-table__header" {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}>{{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdl-table__sort-icon"></span>{{#endif}}</th>
-					{{#endfor}}
-				</tr>
-				{{#endif}}
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</script>
-
-	<script type="text/template" class="_tmpl-tableRow">
-		{{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
-			{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__details-toggle"></span></td>{{#endif}}
-        	<!-- TODO: Add condition to check if template for column specified -->
-          {{#for(var j=0; j < this.config.columns.length; j++)}}
-        		<td class="mdl-table__cell">{{this.data.rendered[i][this.config.columns[j].key]}}</td>
-        	{{#endfor}}
-        	</tr>
-      {{#if(this.config.detailsTemplateSelector)}}
-      <tr class="_mdl-table-rowDetails mdl-table__row-details">
-      	<td class="mdl-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data.rendered[i])}}</td>
-      </tr>
+    <script type="text/template" class="_tmpl-basic">
+      <p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
+      {{#if(this.skills)}}
+      <p>
+      	My skills are:
+      	<ul>
+      		{{#for(var index in this.skills)}}
+      		<li><a href="#" class="{{#if(this.skills[index] == 'css')}}red{{#endif}}">{{this.skills[index]}}</a></li>
+      		{{#endfor}}
+      	</ul>
+      </p>
+      {{#else}}
+      <p>I have no skills.</p>
       {{#endif}}
-        {{#endfor}}
-          {{#else}}
-          	<tr>
-          		<td class="mdl-table__cell" colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
-          	</tr>
+      <div>Thanks for your time?</div>
+    </script>
+
+    <script type="text/template" class="_tmpl-pagination">
+        <div class="_mdl-pagination mdl-pagination">
+      Page:
+        	<select class="_mdl-pagination-pageSelect">
+        		{{#for(var i = 1; i <= this.totalPages; i++)}}
+        		<option value="{{i}}">{{i}}</option>
+        		{{#endfor}}
+        	</select>
+        	of {{this.totalPages}}
+        	<button class="_mdl-pagination-prev">Previous</button>
+        	<button class="_mdl-pagination-next">Next</button>
+        </div>
+    </script>
+
+    <script type="text/template" class="_tmpl-table">
+      <table class="_mdl-table mdl-table">
+      	<thead>
+      		{{#if(this.config.columns.length)}}
+      		<tr class="mdl-table__row">
+      		{{#if(this.config.detailsTemplateSelector)}}
+      			<th></th>
+      			{{#endif}}
+      			{{#for(var i=0; i < this.config.columns.length; i++)}}
+      			<th class="_mdl-table-th mdl-table__header" {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}>{{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdl-table__sort-icon"></span>{{#endif}}</th>
+      			{{#endfor}}
+      		</tr>
+      		{{#endif}}
+      	</thead>
+      	<tbody>
+      	</tbody>
+      </table>
+    </script>
+
+    <script type="text/template" class="_tmpl-tableRow">
+      {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
+      	{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__details-toggle"></span></td>{{#endif}}
+            	<!-- TODO: Add condition to check if template for column specified -->
+              {{#for(var j=0; j < this.config.columns.length; j++)}}
+            		<td class="mdl-table__cell">{{this.data.rendered[i][this.config.columns[j].key]}}</td>
+            	{{#endfor}}
+            	</tr>
+          {{#if(this.config.detailsTemplateSelector)}}
+          <tr class="_mdl-table-rowDetails mdl-table__row-details">
+          	<td class="mdl-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data.rendered[i])}}</td>
+          </tr>
           {{#endif}}
+            {{#endfor}}
+              {{#else}}
+              	<tr>
+              		<td class="mdl-table__cell" colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
+              	</tr>
+              {{#endif}}
     </script>
 
     <script type="text/template" class="_tmpl-table-details">
