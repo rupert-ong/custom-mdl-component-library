@@ -14,7 +14,7 @@ document.querySelector("#content").innerHTML = MDL.template.render(
 var table = MDL.table("#tableContent", {
   columns: [
     { label: "Name", key: "name" },
-    { label: "Age", key: "age" },
+    { label: "Age", key: "age", type: "numeric" },
     { label: "Birthday", key: "born", sortKey: "bornTimestamp" }
   ],
   detailsTemplateSelector: "._tmpl-table-details",
@@ -22,7 +22,10 @@ var table = MDL.table("#tableContent", {
     // enabled: false,
     rowsPerPage: 2,
     rowsPerPageOpts: [1, 2, 4]
-  }
+  },/*
+  sort: {
+    enabled: false
+  }*/
 });
 
 var testData1 = [

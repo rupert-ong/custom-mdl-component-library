@@ -49,6 +49,15 @@ body {
   text-align: left;
 }
 
+.mdl-table__header--numeric,
+.mdl-table__cell--numeric {
+  text-align: right;
+}
+
+.mdl-table--sortable .mdl-table__cell--numeric {
+  padding-right: 32px;
+}
+
 .mdl-table__header {
   color: #767676;
   font-weight: 700;
