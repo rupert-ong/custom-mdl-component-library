@@ -66,6 +66,7 @@
       			<th 
               class="_mdl-table-th mdl-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdl-table__header--numeric{{#endif}}" 
               {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}
+              {{#if(this.config.columns[i].width)}} style="width:{{this.config.columns[i].width}}"{{#endif}}
             >
               {{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdl-table__sort-icon"></span>{{#endif}}
             </th>
