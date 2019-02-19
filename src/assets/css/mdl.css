@@ -32,6 +32,7 @@ body {
   background-color: transparent;
   border: 1px solid #c5c5c5;
   border-radius: 4px;
+  cursor: pointer;
   font-size: 14px;
   line-height: 16px;
   outline: 0;
@@ -41,20 +42,40 @@ body {
   transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
 }
 
-.mdl-btn:not[disabled],
-.mdl-form-control:not[disabled],
-.mdl-form-select:not[disabled] {
-  cursor: pointer;
+.mdl-btn[disabled] {
+  background-color: rgba(0, 0, 0, 0.12);
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.37);
+  cursor: default;
 }
 
 .mdl-btn {
+  border: none;
+  background-color: rgba(18, 118, 211, 1);
   font-weight: 500;
   text-transform: uppercase;
+  color: #fff;
 }
 
+.mdl-btn:focus:not([disabled]),
+.mdl-btn:hover:not([disabled]) {
+  background-color: rgba(20, 130, 235, 1);
+}
+
+.mdl-btn:active:not([disabled]) {
+  background-color: rgb(44, 143, 237);
+}
+
+.mdl-btn--outlined,
 .mdl-btn--text,
 .mdl-btn--icon {
+  background-color: transparent;
   border: none;
+  color: rgba(18, 118, 211, 1);
+}
+
+.mdl-btn--outlined {
+  border: 1px solid #c5c5c5;
 }
 
 .mdl-btn--icon {
@@ -62,6 +83,7 @@ body {
 }
 
 .mdl-btn--icon[disabled] {
+  background-color: transparent;
   opacity: 0.3;
 }
 
@@ -72,10 +94,6 @@ body {
 
 .mdl-btn--icon:active:not([disabled]) {
   background-color: #e1e1e1;
-}
-
-.mdl-btn:not([disabled]) {
-  color: rgba(18, 118, 211, 1);
 }
 
 .mdl-btn--text:focus:not([disabled]),
