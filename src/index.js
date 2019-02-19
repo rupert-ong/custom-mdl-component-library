@@ -93,7 +93,13 @@ var table = MDL.table(
     columns: [
       { label: "Name", key: "name" },
       { label: "Age", key: "age", type: "numeric", width: "2%" },
-      { label: "Birthday", key: "born", sortKey: "bornTimestamp", width: "35%" }
+      {
+        label: "Birthday",
+        key: "born",
+        sortKey: "bornTimestamp",
+        width: "35%"
+      },
+      { columnTemplateSelector: "._tmpl-table-column-actions", width: "100px" }
     ],
     detailsTemplateSelector: "._tmpl-table-details",
     pagination: {
