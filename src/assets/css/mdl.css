@@ -94,6 +94,7 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 24px;
+  display: inline-block;
   height: 36px;
   overflow: hidden;
   text-indent: 200%;
@@ -227,11 +228,11 @@ body {
 .mdl-pagination .mdl-form-select {
   font-size: 12px;
   padding: 0 8px;
-  height: 28px;
+  height: 32px;
 }
 
 .mdl-pagination .mdl-btn--icon {
-  width: 28px;
+  width: 32px;
 }
 
 .mdl-pagination .mdl-form-select {
