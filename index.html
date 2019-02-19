@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Component Library</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+      rel="stylesheet"
+    />
+    <link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
+  </head>
 
-<head>
-	<title>Component Library</title>
-	<meta charset="UTF-8" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
-	<link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
-</head>
-
-<body>
-	<h2>Template Example</h2>
-	<div id="content"></div>
-	<h2>Table Example</h2>
-	<button class="_changeTableData" data-key="1">Change Data</button>
+  <body>
+    <h2>Template Example</h2>
+    <div id="content"></div>
+    <h2>Table Example</h2>
+    <button class="_changeTableData" data-key="1">Change Data</button>
     <div id="tableContent"></div>
 
     <script type="text/template" class="_tmpl-basic">
@@ -33,22 +35,26 @@
     </script>
 
     <script type="text/template" class="_tmpl-pagination">
-         <div class="_mdl-pagination mdl-pagination">
-      Rows Per Page:
-      <select class="_mdl-pagination-rowsPerPageSelect">
-      	{{#for(var i = 0; i < this.rowsPerPageOpts.length; i++)}}
-      	<option value="{{this.rowsPerPageOpts[i]}}">{{this.rowsPerPageOpts[i]}}</option>
-      	{{#endfor}}
-      </select>
-      <span class="_mdl-pagination-pageSelectContainer"></span>
-         	<button class="_mdl-pagination-prev">Previous</button>
-         	<button class="_mdl-pagination-next">Next</button>
-         </div>
+      <div class="_mdl-pagination mdl-pagination">
+        <div>
+          Rows Per Page:
+          <select class="_mdl-pagination-rowsPerPageSelect mdl-form-control mdl-form-select">
+            {{#for(var i = 0; i < this.rowsPerPageOpts.length; i++)}}
+            <option value="{{this.rowsPerPageOpts[i]}}">{{this.rowsPerPageOpts[i]}}</option>
+            {{#endfor}}
+          </select>
+      </div>
+      <div class="_mdl-pagination-pageSelectContainer"></div>
+      <div>
+        <button class="_mdl-pagination-prev mdl-btn">Previous</button>
+        <button class="_mdl-pagination-next mdl-btn">Next</button>
+      </div>
+      </div>
     </script>
 
     <script type="text/template" class="_tmpl-paginationPageSelect">
        Page:
-      <select class="_mdl-pagination-pageSelect">
+      <select class="_mdl-pagination-pageSelect mdl-form-control mdl-form-select">
       	 {{#for(var i = 1; i <=this.totalPages; i++)}}<option value="{{i}}">{{i}}</option>{{#endfor}}
       </select>
       of {{this.totalPages}}
@@ -63,8 +69,8 @@
       			<th></th>
       			{{#endif}}
       			{{#for(var i=0; i < this.config.columns.length; i++)}}
-      			<th 
-              class="_mdl-table-th mdl-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdl-table__header--numeric{{#endif}}" 
+      			<th
+              class="_mdl-table-th mdl-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdl-table__header--numeric{{#endif}}"
               {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}
               {{#if(this.config.columns[i].width)}} style="width:{{this.config.columns[i].width}}"{{#endif}}
             >

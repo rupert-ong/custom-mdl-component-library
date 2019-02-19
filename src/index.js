@@ -11,23 +11,6 @@ document.querySelector("#content").innerHTML = MDL.template.render(
 );
 
 // Table Example
-var table = MDL.table("#tableContent", {
-  columns: [
-    { label: "Name", key: "name" },
-    { label: "Age", key: "age", type: "numeric", width: "2%" },
-    { label: "Birthday", key: "born", sortKey: "bornTimestamp", width: "35%" }
-  ],
-  detailsTemplateSelector: "._tmpl-table-details",
-  pagination: {
-    // enabled: false,
-    rowsPerPage: 2,
-    rowsPerPageOpts: [1, 2, 4]
-  },/*
-  sort: {
-    enabled: false
-  }*/
-});
-
 var testData1 = [
   {
     name: "Ketel One",
@@ -103,6 +86,27 @@ var testData2 = [
     bornTimestamp: 1517374800000
   }
 ];
+
+var table = MDL.table(
+  "#tableContent",
+  {
+    columns: [
+      { label: "Name", key: "name" },
+      { label: "Age", key: "age", type: "numeric", width: "2%" },
+      { label: "Birthday", key: "born", sortKey: "bornTimestamp", width: "35%" }
+    ],
+    detailsTemplateSelector: "._tmpl-table-details",
+    pagination: {
+      // enabled: false,
+      rowsPerPage: 2,
+      rowsPerPageOpts: [1, 2, 4]
+    } /*
+  sort: {
+    enabled: false
+  }*/
+  },
+  testData2
+);
 
 document
   .querySelector("._changeTableData")

@@ -15,10 +15,54 @@ body {
   padding: 16px;
 }
 
+/* Form Elements */
+.mdl-btn,
+.mdl-form-control:not([row]),
+.mdl-form-select:not([multiple]) {
+  height: 36px;
+  white-space: nowrap;
+}
+
+.mdl-btn,
+.mdl-form-control,
+.mdl-form-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px 16px;
+  transition-property: background, border, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+}
+
+.mdl-btn:hover:not([disabled]),
+.mdl-form-control:hover:not([disabled]),
+.mdl-form-select:hover:not([disabled]),
+.mdl-btn:focus:not([disabled]),
+.mdl-form-control:focus:not([disabled]),
+.mdl-form-select:focus:not([disabled]) {
+  outline: 0;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 2px #1276d3;
+}
+
+.mdl-form-select:not([multiple]) {
+  background: url("/src/assets/images/baseline-arrow_drop_down-24px.svg") 95%
+    center/16px no-repeat;
+  padding-right: 24px;
+}
+
 /* Table */
 .mdl-table {
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 16px;
   width: 100%;
 }
 
@@ -60,6 +104,7 @@ body {
 
 .mdl-table__header {
   color: #767676;
+  font-size: 12px;
   font-weight: 700;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -81,7 +126,7 @@ body {
   display: inline-block;
   height: 16px;
   margin-left: 4px;
-  vertical-align: text-top;
+  vertical-align: top;
   width: 16px;
 }
 
@@ -120,5 +165,24 @@ body {
 
 /* Pagination */
 .mdl-pagination {
+  display: flex;
+  font-size: 12px;
+  justify-content: flex-end;
   padding: 16px 0;
+}
+
+.mdl-pagination > div {
+  color: #767676;
+  margin-left: 20px;
+}
+
+.mdl-pagination .mdl-btn,
+.mdl-pagination .mdl-form-select {
+  font-size: 12px;
+  padding: 0 8px;
+  height: 32px;
+}
+
+.mdl-pagination .mdl-form-select {
+  padding-right: 16px;
 }
