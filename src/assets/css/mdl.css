@@ -78,6 +78,11 @@ body {
   border: 1px solid #c5c5c5;
 }
 
+.mdl-btn--outlined[disabled],
+.mdl-btn--text[disabled] {
+  background: transparent;
+}
+
 .mdl-btn--icon {
   border-radius: 50%;
 }

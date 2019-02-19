@@ -122,3 +122,14 @@ document
     table.loadData(key === "1" ? testData1 : testData2);
     btn.setAttribute("data-key", key === "1" ? "2" : "1");
   });
+
+document
+  .querySelector("._disableButtons")
+  .addEventListener("click", function(e) {
+    var mainButton = e.target;
+    var buttons = e.target.closest("._btnContainer").querySelectorAll("button");
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      if (button !== mainButton) button.disabled = !button.disabled;
+    }
+  });
