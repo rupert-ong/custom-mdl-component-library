@@ -32,7 +32,6 @@ body {
   background-color: transparent;
   border: 1px solid #c5c5c5;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 14px;
   line-height: 16px;
   outline: 0;
@@ -40,6 +39,12 @@ body {
   transition-property: background-color, border, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+}
+
+.mdl-btn:not[disabled],
+.mdl-form-control:not[disabled],
+.mdl-form-select:not[disabled] {
+  cursor: pointer;
 }
 
 .mdl-btn {
