@@ -56,6 +56,10 @@ body {
   border-radius: 50%;
 }
 
+.mdl-btn--icon[disabled] {
+  opacity: 0.3;
+}
+
 .mdl-btn--icon:hover:not([disabled]) {
   background-color: #f5f5f5;
 }
@@ -83,6 +87,26 @@ body {
   background: url("/src/assets/images/baseline-arrow_drop_down-24px.svg")
     no-repeat center right 2px/16px;
   padding-right: 24px;
+}
+
+.mdl-icon,
+.mdl-btn--icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  height: 36px;
+  overflow: hidden;
+  text-indent: 200%;
+  white-space: nowrap;
+  width: 36px;
+}
+
+.mdl-icon--chevron-right {
+  background-image: url("/src/assets/images/baseline-chevron_right-24px.svg");
+}
+
+.mdl-icon--chevron-left {
+  background-image: url("/src/assets/images/baseline-chevron_left-24px.svg");
 }
 
 /* Table */
@@ -204,6 +228,10 @@ body {
   font-size: 12px;
   padding: 0 8px;
   height: 28px;
+}
+
+.mdl-pagination .mdl-btn--icon {
+  width: 28px;
 }
 
 .mdl-pagination .mdl-form-select {
