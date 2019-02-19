@@ -64,6 +64,7 @@
           }
           this._update();
           this._runCallback();
+          e.target.blur();
         }.bind(this)
       );
 

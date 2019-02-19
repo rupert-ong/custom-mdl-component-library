@@ -46,8 +46,8 @@
       </div>
       <div class="_mdl-pagination-pageSelectContainer"></div>
       <div>
-        <button class="_mdl-pagination-prev mdl-btn">Previous</button>
-        <button class="_mdl-pagination-next mdl-btn">Next</button>
+        <button class="_mdl-pagination-prev mdl-btn mdl-btn--text">Previous</button>
+        <button class="_mdl-pagination-next mdl-btn mdl-btn--text">Next</button>
       </div>
       </div>
     </script>
@@ -87,7 +87,7 @@
 
     <script type="text/template" class="_tmpl-tableRow">
       {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
-      	{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-table__details-toggle"></span></td>{{#endif}}
+      	{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-btn mdl-btn--icon mdl-table__details-toggle"></span></td>{{#endif}}
             	<!-- TODO: Add condition to check if template for column specified -->
               {{#for(var j=0; j < this.config.columns.length; j++)}}
             		<td class="mdl-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdl-table__cell--numeric{{#endif}}">{{this.data.rendered[i][this.config.columns[j].key]}}</td>
