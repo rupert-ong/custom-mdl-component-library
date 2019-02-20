@@ -218,7 +218,7 @@ body {
   display: inline-block;
   height: 16px;
   margin-left: 4px;
-  vertical-align: top;
+  vertical-align: text-bottom;
   width: 16px;
 }
 
