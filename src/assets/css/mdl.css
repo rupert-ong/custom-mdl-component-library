@@ -296,3 +296,77 @@ section {
 .mdl-pagination .mdl-form-select {
   padding-right: 20px;
 }
+
+/* Dialog */
+.mdl-dialog,
+.mdl-dialog__scrim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.mdl-dialog {
+  visibility: hidden;
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  z-index: 5;
+}
+
+.mdl-dialog--open {
+  visibility: visible;
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.mdl-dialog__scrim {
+  background-color: rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  z-index: -1;
+}
+
+.mdl-dialog--open .mdl-dialog__scrim {
+  opacity: 1;
+}
+
+.mdl-dialog__container,
+.mdl-dialog__surface {
+  display: flex;
+}
+
+.mdl-dialog__container {
+  flex-direction: row;
+  justify-content: space-around;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.25s 0s, transform 0.25s;
+}
+
+.mdl-dialog--open .mdl-dialog__container {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mdl-dialog__surface {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  max-height: calc(100vh - 32px);
+  min-width: 280px;
+}
+
+.mdl-dialog__actions {
+  border-top: 1px solid transparent;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 52px;
+  padding: 8px;
+}

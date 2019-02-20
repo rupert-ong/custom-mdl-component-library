@@ -129,3 +129,13 @@ document
       if (button !== mainButton) button.disabled = !button.disabled;
     }
   });
+
+document
+  .querySelector("._tempShowDialog")
+  .addEventListener("click", function(e) {
+    document.querySelector(".mdl-dialog").classList.add("mdl-dialog--open");
+  });
+
+document.querySelector(".mdl-dialog").addEventListener("click", function(e) {
+  this.classList.remove("mdl-dialog--open");
+});
