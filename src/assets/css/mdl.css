@@ -20,6 +20,10 @@ section {
   margin-bottom: 16px;
 }
 
+h2 {
+  font-weight: 500;
+}
+
 /* Card */
 .mdl-card {
   background-color: #fff;
@@ -216,7 +220,7 @@ section {
 .mdl-table__header {
   color: #767676;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
