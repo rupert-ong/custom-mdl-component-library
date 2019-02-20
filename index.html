@@ -11,19 +11,28 @@
   </head>
 
   <body>
-    <h2>Template Example</h2>
-    <div id="content"></div>
-    <h2>Table Example</h2>
-    <div class="_btnContainer">
-      <button class="_changeTableData mdl-btn mdl-btn" data-key="1">
-        Change Data
-      </button>
-      <button class="_disableButtons mdl-btn mdl-btn--outlined">
-        Toggle Buttons
-      </button>
-      <button class="mdl-btn mdl-btn--text">Text</button>
-    </div>
-    <div id="tableContent"></div>
+    <section>
+      <div class="mdl-card">
+        <h2>Template Example</h2>
+        <div id="content"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="mdl-card">
+        <h2>Table Example</h2>
+        <div class="_btnContainer">
+          <button class="_changeTableData mdl-btn mdl-btn" data-key="1">
+            Change Data
+          </button>
+          <button class="_disableButtons mdl-btn mdl-btn--outlined">
+            Toggle Buttons
+          </button>
+          <button class="mdl-btn mdl-btn--text">Text</button>
+        </div>
+        <div id="tableContent"></div>
+      </div>
+    </section>
 
     <script type="text/template" class="_tmpl-basic">
       <p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>

@@ -87,32 +87,28 @@ var testData2 = [
   }
 ];
 
-var table = MDL.table(
-  "#tableContent",
-  {
-    columns: [
-      { label: "Name", key: "name" },
-      { label: "Age", key: "age", type: "numeric", width: "2%" },
-      {
-        label: "Birthday",
-        key: "born",
-        sortKey: "bornTimestamp",
-        width: "35%"
-      },
-      { columnTemplateSelector: "._tmpl-table-column-actions", width: "100px" }
-    ],
-    detailsTemplateSelector: "._tmpl-table-details",
-    pagination: {
-      // enabled: false,
-      rowsPerPage: 2,
-      rowsPerPageOpts: [1, 2, 4]
-    } /*
+var table = MDL.table("#tableContent", {
+  columns: [
+    { label: "Name", key: "name" },
+    { label: "Age", key: "age", type: "numeric", width: "2%" },
+    {
+      label: "Birthday",
+      key: "born",
+      sortKey: "bornTimestamp",
+      width: "35%"
+    },
+    { columnTemplateSelector: "._tmpl-table-column-actions", width: "100px" }
+  ],
+  detailsTemplateSelector: "._tmpl-table-details",
+  pagination: {
+    // enabled: false,
+    rowsPerPage: 2,
+    rowsPerPageOpts: [1, 2, 4]
+  } /*
   sort: {
     enabled: false
   }*/
-  },
-  testData2
-);
+});
 
 document
   .querySelector("._changeTableData")
