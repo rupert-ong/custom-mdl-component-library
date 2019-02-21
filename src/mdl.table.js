@@ -106,14 +106,16 @@
         "click",
         function(e) {
           if (
-            e.target.classList.contains("_mdl-table-th") &&
+            (e.target.matches("._mdl-table-th") ||
+              e.target.parentNode.matches("._mdl-table-th")) &&
             this.state.config.sort.enabled
           ) {
-            this._updateSortView(e.target.getAttribute("data-sort-key"));
-          } else if (e.target.classList.contains("_mdl-table-detailsToggle")) {
+            this._updateSortView(e.target.dataset.sortKey ? e.target.dataset.sortKey : e.target.parentNode.dataset.sortKey);
+          } else if (e.target.matches("._mdl-table-detailsToggle")) {
             this._expandRowDetailsView(e.target);
           }
-        }.bind(this)
+        }.bind(this),
+        false
       );
     },
 
