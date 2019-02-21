@@ -133,9 +133,22 @@ document
 document
   .querySelector("._tempShowDialog")
   .addEventListener("click", function(e) {
-    document.querySelector(".mdl-dialog").classList.add("mdl-dialog--open");
+    // document.querySelector(".mdl-dialog").classList.add("mdl-dialog--open");
+    var testDialog = MDL.dialog(
+      "#dialogContainer",
+      {
+        contentTemplateSelector: "._tmpl-dialog-sample",
+        autoOpen: true
+      },
+      {
+        title: "Nope",
+        content: null
+      }
+    );
   });
 
+/*
 document.querySelector(".mdl-dialog").addEventListener("click", function(e) {
   this.classList.remove("mdl-dialog--open");
 });
+*/

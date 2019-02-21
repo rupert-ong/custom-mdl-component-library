@@ -32,11 +32,19 @@
       </div>
     </section>
 
+    <div id="dialogContainer"></div>
+
     <!-- Dialog HTML -->
-    <div class="mdl-dialog">
+    <!-- 
+    <div class="mdl-dialog mdl-dialog--scrollable">
       <div class="mdl-dialog__scrim">
         <div class="mdl-dialog__container">
           <div class="mdl-dialog__surface">
+            <h2 class="mdl-dialog__title">This is the title text</h2>
+            <section class="mdl-dialog__content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus, nisl rhoncus sagittis ultrices, dui ante ultrices est, ut mattis felis enim vitae odio. Cras et arcu velit. Curabitur sit amet lorem molestie justo rhoncus efficitur non non risus. Pellentesque in est risus. Fusce blandit eget nisl vel vulputate. Etiam molestie bibendum pulvinar. Proin odio sem, pharetra eget lobortis ut, dignissim non orci. Suspendisse in tortor tellus. Nunc in augue porta, sagittis eros a, aliquet neque. Sed efficitur scelerisque felis ut vulputate. Curabitur nisl sapien, mattis in dolor non, dictum rhoncus elit. In hac habitasse platea dictumst.          </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus, nisl rhoncus sagittis ultrices, dui ante ultrices est, ut mattis felis enim vitae odio. Cras et arcu velit. Curabitur sit amet lorem molestie justo rhoncus efficitur non non risus. Pellentesque in est risus. Fusce blandit eget nisl vel vulputate. Etiam molestie bibendum pulvinar. Proin odio sem, pharetra eget lobortis ut, dignissim non orci. Suspendisse in tortor tellus. Nunc in augue porta, sagittis eros a, aliquet neque. Sed efficitur scelerisque felis ut vulputate. Curabitur nisl sapien, mattis in dolor non, dictum rhoncus elit. In hac habitasse platea dictumst.          </p>
+            </section>
             <footer class="mdl-dialog__actions">
               <button class="mdl-btn mdl-btn--text">Cancel</button>
               <button class="mdl-btn mdl-btn--text">Ok</button>
@@ -45,6 +53,7 @@
         </div>
       </div>
     </div>
+    -->
 
     <script type="text/template" class="_tmpl-basic">
       <p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
@@ -140,6 +149,32 @@
               {{#endif}}
     </script>
 
+    <script type="text/template" class="_tmpl-dialog">
+      <div class="_mdl-dialog mdl-dialog {{this.config.scrollable ? ' mdl-dialog--scrollable' : ''}}">
+        <div class="_mdl-dialog-scrim mdl-dialog__scrim">
+          <div class="mdl-dialog__container">
+            <div class="mdl-dialog__surface">
+              {{#if(this.data.title)}}
+              <h2 class="mdl-dialog__title">{{this.data.title}}</h2>
+              {{#endif}}
+              {{#if(this.config.contentTemplateSelector)}}
+              <section class="mdl-dialog__content">
+                {{#render(this.config.contentTemplateSelector, this.data.content)}}
+              </section>
+              {{#endif}}
+              {{#if(Array.isArray(this.config.buttons) && this.config.buttons.length)}}
+              <footer class="mdl-dialog__actions">
+                {{#for(var i=0; i < this.config.buttons.length; i++)}}
+                <button class="_mdl-dialog-btn mdl-btn mdl-btn--text" data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}">{{this.config.buttons[i].label}}</button>
+                {{#endfor}}
+              </footer>
+              {{#endif}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
     <script type="text/template" class="_tmpl-table-details">
       <div>This is the template for {{this.repos}}</div>
     </script>
@@ -156,10 +191,15 @@
       </div>
     </script>
 
+    <script type="text/template" class="_tmpl-dialog-sample">
+      <div>Hello</div>
+    </script>
+
     <script src="src/mdl.core.js"></script>
     <script src="src/mdl.template.js"></script>
     <script src="src/mdl.pagination.js"></script>
     <script src="src/mdl.table.js"></script>
+    <script src="src/mdl.dialog.js"></script>
     <script src="src/index.js"></script>
   </body>
 </html>
