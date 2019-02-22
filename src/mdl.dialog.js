@@ -38,18 +38,19 @@
     },
 
     _addEventHandlers: function() {
-      this.domRef
-        .querySelector("._mdl-dialog")
-        .addEventListener("click", function(e){
-          if (e.target.classList.contains("_mdl-dialog-scrim")) {
+      this.domRef.querySelector("._mdl-dialog").addEventListener(
+        "click",
+        function(e) {
+          var target = e.target;
+          if (target.matches("._mdl-dialog-scrim")) {
             this.close();
-          } else if (e.target.classList.contains("_mdl-dialog-btn")){
-            var btn = e.target;
-            if(btn.dataset.type === "dismissive") {
+          } else if (target.matches("._mdl-dialog-btn")) {
+            if (target.dataset.type === "dismissive") {
               this.close();
             }
           }
-        }.bind(this));
+        }.bind(this)
+      );
     },
 
     open: function() {
@@ -67,8 +68,9 @@
     close: function() {
       var dialogElem = this.domRef.querySelector("._mdl-dialog"),
         transitionEndHandler = function(e) {
-          e.target.removeEventListener("transitionend", transitionEndHandler);
-          e.target.parentNode.removeChild(e.target);
+          var target = e.target;
+          target.removeEventListener("transitionend", transitionEndHandler);
+          target.parentNode.removeChild(target);
         };
 
       dialogElem.classList.remove("mdl-dialog--open");

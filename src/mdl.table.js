@@ -105,14 +105,16 @@
       this.domRef.addEventListener(
         "click",
         function(e) {
+          var target = e.target;
           if (
-            (e.target.matches("._mdl-table-th") ||
-              e.target.parentNode.matches("._mdl-table-th")) &&
+            target.closest("._mdl-table-th") &&
             this.state.config.sort.enabled
           ) {
-            this._updateSortView(e.target.dataset.sortKey ? e.target.dataset.sortKey : e.target.parentNode.dataset.sortKey);
-          } else if (e.target.matches("._mdl-table-detailsToggle")) {
-            this._expandRowDetailsView(e.target);
+            this._updateSortView(
+              target.closest("._mdl-table-th").dataset.sortKey
+            );
+          } else if (target.matches("._mdl-table-detailsToggle")) {
+            this._expandRowDetailsView(target);
           }
         }.bind(this),
         false
