@@ -9,7 +9,7 @@
       scrollable: false,
       buttons: [
         { label: "Cancel", type: "dismissive" },
-        { label: "Ok", type: "confirming" }
+        { label: "Ok", type: "confirming", disabled: true }
       ],
       contentTemplateSelector: null,
       autoOpen: false

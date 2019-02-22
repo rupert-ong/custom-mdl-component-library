@@ -165,7 +165,7 @@
               {{#if(Array.isArray(this.config.buttons) && this.config.buttons.length)}}
               <footer class="mdl-dialog__actions">
                 {{#for(var i=0; i < this.config.buttons.length; i++)}}
-                <button class="_mdl-dialog-btn mdl-btn mdl-btn--text" data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}">{{this.config.buttons[i].label}}</button>
+                <button class="_mdl-dialog-btn mdl-btn mdl-btn--text" data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}" {{this.config.buttons[i].disabled ? ' disabled' : ''}}>{{this.config.buttons[i].label}}</button>
                 {{#endfor}}
               </footer>
               {{#endif}}
