@@ -5,28 +5,28 @@
 	<title>Component Library</title>
 	<meta charset="UTF-8" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,600,600i" rel="stylesheet">
-	<link href="src/assets/css/mdl.css" type="text/css" rel="stylesheet" />
+	<link href="src/assets/css/mdwc.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
 	<section>
-		<div class="mdl-card">
+		<div class="mdwc-card">
 			<h2>Template Example</h2>
 			<div id="content"></div>
 		</div>
 	</section>
 
 	<section>
-		<div class="mdl-card">
+		<div class="mdwc-card">
 			<h2>Table Example</h2>
 			<div class="_btnContainer">
-				<button class="_changeTableData mdl-btn mdl-btn" data-key="1">
+				<button class="_changeTableData mdwc-btn mdwc-btn" data-key="1">
             Change Data
           </button>
-          <button class="_disableButtons mdl-btn mdl-btn--outlined">
+          <button class="_disableButtons mdwc-btn mdwc-btn--outlined">
             Toggle Buttons
           </button>
-          <button class="_tempShowDialog mdl-btn mdl-btn--text">Show Dialog</button>
+          <button class="_tempShowDialog mdwc-btn mdwc-btn--text">Show Dialog</button>
         </div>
         <div id="tableContent"></div>
       </div>
@@ -36,18 +36,18 @@
 
     <!-- Dialog HTML -->
     <!-- 
-    <div class="mdl-dialog mdl-dialog--scrollable">
-      <div class="mdl-dialog__scrim">
-        <div class="mdl-dialog__container">
-          <div class="mdl-dialog__surface">
-            <h2 class="mdl-dialog__title">This is the title text</h2>
-            <section class="mdl-dialog__content">
+    <div class="mdwc-dialog mdwc-dialog--scrollable">
+      <div class="mdwc-dialog__scrim">
+        <div class="mdwc-dialog__container">
+          <div class="mdwc-dialog__surface">
+            <h2 class="mdwc-dialog__title">This is the title text</h2>
+            <section class="mdwc-dialog__content">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus, nisl rhoncus sagittis ultrices, dui ante ultrices est, ut mattis felis enim vitae odio. Cras et arcu velit. Curabitur sit amet lorem molestie justo rhoncus efficitur non non risus. Pellentesque in est risus. Fusce blandit eget nisl vel vulputate. Etiam molestie bibendum pulvinar. Proin odio sem, pharetra eget lobortis ut, dignissim non orci. Suspendisse in tortor tellus. Nunc in augue porta, sagittis eros a, aliquet neque. Sed efficitur scelerisque felis ut vulputate. Curabitur nisl sapien, mattis in dolor non, dictum rhoncus elit. In hac habitasse platea dictumst.          </p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus, nisl rhoncus sagittis ultrices, dui ante ultrices est, ut mattis felis enim vitae odio. Cras et arcu velit. Curabitur sit amet lorem molestie justo rhoncus efficitur non non risus. Pellentesque in est risus. Fusce blandit eget nisl vel vulputate. Etiam molestie bibendum pulvinar. Proin odio sem, pharetra eget lobortis ut, dignissim non orci. Suspendisse in tortor tellus. Nunc in augue porta, sagittis eros a, aliquet neque. Sed efficitur scelerisque felis ut vulputate. Curabitur nisl sapien, mattis in dolor non, dictum rhoncus elit. In hac habitasse platea dictumst.          </p>
             </section>
-            <footer class="mdl-dialog__actions">
-              <button class="mdl-btn mdl-btn--text">Cancel</button>
-              <button class="mdl-btn mdl-btn--text">Ok</button>
+            <footer class="mdwc-dialog__actions">
+              <button class="mdwc-btn mdwc-btn--text">Cancel</button>
+              <button class="mdwc-btn mdwc-btn--text">Ok</button>
             </footer>
           </div>
         </div>
@@ -73,46 +73,46 @@
     </script>
 
     <script type="text/template" class="_tmpl-pagination">
-      <div class="_mdl-pagination mdl-pagination">
+      <div class="_mdwc-pagination mdwc-pagination">
         <div>
           Rows Per Page:
-          <select class="_mdl-pagination-rowsPerPageSelect mdl-form-control mdl-form-select">
+          <select class="_mdwc-pagination-rowsPerPageSelect mdwc-form-control mdwc-form-select">
             {{#for(var i = 0; i < this.rowsPerPageOpts.length; i++)}}
             <option value="{{this.rowsPerPageOpts[i]}}">{{this.rowsPerPageOpts[i]}}</option>
             {{#endfor}}
           </select>
       </div>
-      <div class="_mdl-pagination-pageSelectContainer"></div>
+      <div class="_mdwc-pagination-pageSelectContainer"></div>
       <div>
-        <button class="_mdl-pagination-prev mdl-btn mdl-btn--icon mdl-icon--chevron-left">Previous</button>
-        <button class="_mdl-pagination-next mdl-btn mdl-btn--icon mdl-icon--chevron-right">Next</button>
+        <button class="_mdwc-pagination-prev mdwc-btn mdwc-btn--icon mdwc-icon--chevron-left">Previous</button>
+        <button class="_mdwc-pagination-next mdwc-btn mdwc-btn--icon mdwc-icon--chevron-right">Next</button>
       </div>
       </div>
     </script>
 
     <script type="text/template" class="_tmpl-paginationPageSelect">
        Page:
-      <select class="_mdl-pagination-pageSelect mdl-form-control mdl-form-select">
+      <select class="_mdwc-pagination-pageSelect mdwc-form-control mdwc-form-select">
       	 {{#for(var i = 1; i <=this.totalPages; i++)}}<option value="{{i}}">{{i}}</option>{{#endfor}}
       </select>
       of {{this.totalPages}}
     </script>
 
     <script type="text/template" class="_tmpl-table">
-      <table class="_mdl-table mdl-table{{#if(this.config.sort.enabled)}} mdl-table--sortable{{#endif}}">
+      <table class="_mdwc-table mdwc-table{{#if(this.config.sort.enabled)}} mdwc-table--sortable{{#endif}}">
       	<thead>
       		{{#if(this.config.columns.length)}}
-      		<tr class="mdl-table__row">
+      		<tr class="mdwc-table__row">
       		{{#if(this.config.detailsTemplateSelector)}}
       			<th></th>
       			{{#endif}}
       			{{#for(var i=0; i < this.config.columns.length; i++)}}
       			<th
-              class="_mdl-table-th mdl-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdl-table__header--numeric{{#endif}}"
+              class="_mdwc-table-th mdwc-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdwc-table__header--numeric{{#endif}}"
               {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}
               {{#if(this.config.columns[i].width)}} style="width:{{this.config.columns[i].width}}"{{#endif}}
             >
-              {{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdl-table__sort-icon"></span>{{#endif}}
+              {{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdwc-table__sort-icon"></span>{{#endif}}
             </th>
       			{{#endfor}}
       		</tr>
@@ -124,10 +124,10 @@
     </script>
 
     <script type="text/template" class="_tmpl-tableRow">
-      {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdl-table-row mdl-table__row">
-      	{{#if(this.config.detailsTemplateSelector)}}<td class="mdl-table__cell mdl-table__cell--toggle"><span class="_mdl-table-detailsToggle mdl-btn mdl-btn--icon mdl-table__details-toggle"></span></td>{{#endif}}
+      {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdwc-table-row mdwc-table__row">
+      	{{#if(this.config.detailsTemplateSelector)}}<td class="mdwc-table__cell mdwc-table__cell--toggle"><span class="_mdwc-table-detailsToggle mdwc-btn mdwc-btn--icon mdwc-table__details-toggle"></span></td>{{#endif}}
               {{#for(var j=0; j < this.config.columns.length; j++)}}
-            		<td class="mdl-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdl-table__cell--numeric{{#endif}}">
+            		<td class="mdwc-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdwc-table__cell--numeric{{#endif}}">
                   {{#if(this.config.columns[j].columnTemplateSelector)}}
                {{#render(this.config.columns[j].columnTemplateSelector, this.data.rendered[i])}}
                   {{#else}}
@@ -137,35 +137,35 @@
             	{{#endfor}}
             	</tr>
           {{#if(this.config.detailsTemplateSelector)}}
-          <tr class="_mdl-table-rowDetails mdl-table__row-details">
-          	<td class="mdl-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data.rendered[i])}}</td>
+          <tr class="_mdwc-table-rowDetails mdwc-table__row-details">
+          	<td class="mdwc-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data.rendered[i])}}</td>
           </tr>
           {{#endif}}
             {{#endfor}}
               {{#else}}
               	<tr>
-              		<td class="mdl-table__cell" colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
+              		<td class="mdwc-table__cell" colspan="{{this.config.columns.length + (this.config.detailsTemplateSelector ? 1 : 0)}}">No Data</td>
               	</tr>
               {{#endif}}
     </script>
 
     <script type="text/template" class="_tmpl-dialog">
-      <div class="_mdl-dialog mdl-dialog {{this.config.scrollable ? ' mdl-dialog--scrollable' : ''}}">
-        <div class="_mdl-dialog-scrim mdl-dialog__scrim" data-type="dismissive">
-          <div class="mdl-dialog__container">
-            <div class="mdl-dialog__surface">
+      <div class="_mdwc-dialog mdwc-dialog {{this.config.scrollable ? ' mdwc-dialog--scrollable' : ''}}">
+        <div class="_mdwc-dialog-scrim mdwc-dialog__scrim" data-type="dismissive">
+          <div class="mdwc-dialog__container">
+            <div class="mdwc-dialog__surface">
               {{#if(this.data.title)}}
-              <h2 class="mdl-dialog__title">{{this.data.title}}</h2>
+              <h2 class="mdwc-dialog__title">{{this.data.title}}</h2>
               {{#endif}}
               {{#if(this.config.contentTemplateSelector)}}
-              <section class="mdl-dialog__content">
+              <section class="mdwc-dialog__content">
                 {{#render(this.config.contentTemplateSelector, this.data.content)}}
               </section>
               {{#endif}}
               {{#if(Array.isArray(this.config.buttons) && this.config.buttons.length)}}
-              <footer class="mdl-dialog__actions">
+              <footer class="mdwc-dialog__actions">
                 {{#for(var i=0; i < this.config.buttons.length; i++)}}
-                <button class="_mdl-dialog-btn mdl-btn mdl-btn--text" data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}" {{this.config.buttons[i].disabled ? ' disabled' : ''}}>{{this.config.buttons[i].label}}</button>
+                <button class="_mdwc-dialog-btn mdwc-btn mdwc-btn--text" data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}" {{this.config.buttons[i].disabled ? ' disabled' : ''}}>{{this.config.buttons[i].label}}</button>
                 {{#endfor}}
               </footer>
               {{#endif}}
@@ -195,11 +195,11 @@
       <div>Hello</div>
     </script>
 
-    <script src="src/mdl.core.js"></script>
-    <script src="src/mdl.template.js"></script>
-    <script src="src/mdl.pagination.js"></script>
-    <script src="src/mdl.table.js"></script>
-    <script src="src/mdl.dialog.js"></script>
+    <script src="src/mdwc.core.js"></script>
+    <script src="src/mdwc.template.js"></script>
+    <script src="src/mdwc.pagination.js"></script>
+    <script src="src/mdwc.table.js"></script>
+    <script src="src/mdwc.dialog.js"></script>
     <script src="src/index.js"></script>
   </body>
 </html>

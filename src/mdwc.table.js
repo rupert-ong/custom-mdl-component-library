@@ -72,7 +72,7 @@
       )
         return null;
 
-      var paginationSelector = "._mdl-table-pagination",
+      var paginationSelector = "._mdwc-table-pagination",
         paginationElem = this.domRef.querySelector(paginationSelector),
         paginationConfig = this.state.config.pagination;
 
@@ -107,13 +107,13 @@
         function(e) {
           var target = e.target;
           if (
-            target.closest("._mdl-table-th") &&
+            target.closest("._mdwc-table-th") &&
             this.state.config.sort.enabled
           ) {
             this._updateSortView(
-              target.closest("._mdl-table-th").dataset.sortKey
+              target.closest("._mdwc-table-th").dataset.sortKey
             );
-          } else if (target.matches("._mdl-table-detailsToggle")) {
+          } else if (target.matches("._mdwc-table-detailsToggle")) {
             this._expandRowDetailsView(target);
           }
         }.bind(this),
@@ -140,16 +140,16 @@
 
       var elem = document.querySelector(
         this.selector +
-          " ._mdl-table > thead ._mdl-table-th[data-sort-key=" +
+          " ._mdwc-table > thead ._mdwc-table-th[data-sort-key=" +
           key +
           "]"
       );
       if (elem === null) return;
 
-      var parentTable = elem.closest("._mdl-table"),
-        headers = parentTable.querySelectorAll("._mdl-table-th"),
+      var parentTable = elem.closest("._mdwc-table"),
+        headers = parentTable.querySelectorAll("._mdwc-table-th"),
         i = 0,
-        CLASS_SORT_PREFIX = "mdl-table__header--sort-",
+        CLASS_SORT_PREFIX = "mdwc-table__header--sort-",
         CLASS_SORT_ASC = CLASS_SORT_PREFIX + "asc",
         CLASS_SORT_DESC = CLASS_SORT_PREFIX + "desc";
 
@@ -174,8 +174,8 @@
     },
 
     _expandRowDetailsView: function(elem) {
-      var parentRow = elem.closest("._mdl-table-row");
-      parentRow.classList.toggle("mdl-table__row--expanded");
+      var parentRow = elem.closest("._mdwc-table-row");
+      parentRow.classList.toggle("mdwc-table__row--expanded");
     },
 
     _changeStateConfigSort: function(key, direction) {
@@ -232,4 +232,4 @@
   _NS.table = function(selector, config, data) {
     return new Table(selector, config, data);
   };
-})(MDL);
+})(MDWC);

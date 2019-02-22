@@ -1,6 +1,6 @@
 "use strict";
 
-var MDL = {};
+var MDWC = {};
 
 (function(_NS) {
   function _closestPolyfill() {
@@ -134,7 +134,7 @@ var MDL = {};
   }
 
   mutate(_NS, {
-    name: "MDL",
+    name: "MDWC",
     utils: {
       isObject: isObject,
       hasProperty: hasProperty,
@@ -158,7 +158,7 @@ var MDL = {};
       }));
     },
     event: {
-      DIALOG_CLOSE: "mdl.dialog.close"
+      DIALOG_CLOSE: "mdwc.dialog.close"
     }
   });
-})(MDL);
+})(MDWC);

@@ -48,4 +48,4 @@
       return new Function(code.replace(/[\r\t\n]/g, "")).apply(data);
     }
   };
-})(MDL);
+})(MDWC);

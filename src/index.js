@@ -5,7 +5,7 @@ var data = {
   skills: ["gin", "css", "kung-fu"]
 };
 
-document.querySelector("#content").innerHTML = MDL.template.render(
+document.querySelector("#content").innerHTML = MDWC.template.render(
   document.querySelector("._tmpl-basic").innerHTML,
   data
 );
@@ -87,7 +87,7 @@ var testData2 = [
   }
 ];
 
-var table = MDL.table("#tableContent", {
+var table = MDWC.table("#tableContent", {
   columns: [
     { label: "Name", key: "name" },
     { label: "Age", key: "age", type: "numeric", width: "2%" },
@@ -135,7 +135,7 @@ document
 document
   .querySelector("._tempShowDialog")
   .addEventListener("click", function(e) {
-    var testDialog = MDL.dialog(
+    var testDialog = MDWC.dialog(
       "#dialogContainer",
       {
         id: 'testDialog',
@@ -149,6 +149,6 @@ document
     );
   });
 
-document.addEventListener(MDL.event.DIALOG_CLOSE, function(e) {
+document.addEventListener(MDWC.event.DIALOG_CLOSE, function(e) {
   console.log(e.detail);
 });

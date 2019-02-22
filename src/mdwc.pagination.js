@@ -31,7 +31,7 @@
   Pagination.prototype = {
     _renderPageSelect: function() {
       this.domRef.querySelector(
-        "._mdl-pagination-pageSelectContainer"
+        "._mdwc-pagination-pageSelectContainer"
       ).innerHTML = _NS.template.render(
         Pagination.pageSelectTemplate,
         this.state.config
@@ -47,14 +47,14 @@
 
           if (
             !(
-              classTokenList.contains("_mdl-pagination-prev") ||
-              classTokenList.contains("_mdl-pagination-next")
+              classTokenList.contains("_mdwc-pagination-prev") ||
+              classTokenList.contains("_mdwc-pagination-next")
             )
           ) {
             return false;
           }
 
-          if (classTokenList.contains("_mdl-pagination-prev")) {
+          if (classTokenList.contains("_mdwc-pagination-prev")) {
             stateConfig.current = Math.max(1, stateConfig.current - 1);
           } else {
             stateConfig.current = Math.min(
@@ -75,14 +75,14 @@
 
           if (
             !(
-              classTokenList.contains("_mdl-pagination-pageSelect") ||
-              classTokenList.contains("_mdl-pagination-rowsPerPageSelect")
+              classTokenList.contains("_mdwc-pagination-pageSelect") ||
+              classTokenList.contains("_mdwc-pagination-rowsPerPageSelect")
             )
           ) {
             return false;
           }
 
-          if (classTokenList.contains("_mdl-pagination-pageSelect")) {
+          if (classTokenList.contains("_mdwc-pagination-pageSelect")) {
             stateConfig.current = Number(e.target.value);
           } else {
             stateConfig.current = 1;
@@ -106,11 +106,11 @@
     },
     _update: function() {
       var rowsPerPageSelect = this.domRef.querySelector(
-          "._mdl-pagination-rowsPerPageSelect"
+          "._mdwc-pagination-rowsPerPageSelect"
         ),
-        pageSelect = this.domRef.querySelector("._mdl-pagination-pageSelect"),
-        prevBtn = this.domRef.querySelector("._mdl-pagination-prev"),
-        nextBtn = this.domRef.querySelector("._mdl-pagination-next"),
+        pageSelect = this.domRef.querySelector("._mdwc-pagination-pageSelect"),
+        prevBtn = this.domRef.querySelector("._mdwc-pagination-prev"),
+        nextBtn = this.domRef.querySelector("._mdwc-pagination-next"),
         stateConfig = this.state.config,
         current = stateConfig.current,
         rowsPerPage = stateConfig.rowsPerPage,
@@ -139,4 +139,4 @@
   _NS.pagination = function(selector, config) {
     return new Pagination(selector, config);
   };
-})(MDL);
+})(MDWC);
