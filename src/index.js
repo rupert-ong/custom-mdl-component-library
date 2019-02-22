@@ -138,7 +138,7 @@ document
     var testDialog = MDWC.dialog(
       "#dialogContainer",
       {
-        id: 'testDialog',
+        id: "testDialog",
         contentTemplateSelector: "._tmpl-dialog-sample",
         autoOpen: true
       },

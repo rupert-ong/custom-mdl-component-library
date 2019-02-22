@@ -196,8 +196,10 @@ var MDWC = {};
         rowsPerPageOpts: [10, 25, 50]
       }
     },
-    dispatchEvent: function(type, detail) {
-      document.dispatchEvent(
+    dispatchEvent: function(elem, type, detail) {
+      if (elem instanceof EventTarget === false || !type) return null;
+      
+      elem.dispatchEvent(
         new CustomEvent(type, {
           detail: detail,
           bubbles: true,

@@ -47,7 +47,7 @@
             target.matches("._mdwc-dialog-btn")
           ) {
             this.close();
-            _NS.dispatchEvent(_NS.event.DIALOG_CLOSE, {
+            _NS.dispatchEvent(this.domRef, _NS.event.DIALOG_CLOSE, {
               id: this.state.config.id,
               type: target.dataset.type
             });

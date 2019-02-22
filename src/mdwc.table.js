@@ -220,7 +220,7 @@
     _addIdsToData: function(data) {
       if (!Array.isArray(data)) return data;
       return data.map(function(obj) {
-        obj["_id"] = _NS.utils.generateId();
+        if (!obj.hasOwnProperty("_id")) obj["_id"] = _NS.utils.generateId();
         return obj;
       });
     },
