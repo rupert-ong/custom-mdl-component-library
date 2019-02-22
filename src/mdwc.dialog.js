@@ -59,13 +59,15 @@
     open: function() {
       this._render();
       this._addEventHandlers();
-      window.requestAnimationFrame(
+      //window.requestAnimationFrame(
+      setTimeout(
         function() {
           this.domRef
             .querySelector("._mdwc-dialog")
             .classList.add("mdwc-dialog--open");
         }.bind(this)
-      );
+      //);
+      , 100);
     },
 
     close: function() {
