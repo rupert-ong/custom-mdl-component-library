@@ -34,27 +34,6 @@
 
     <div id="dialogContainer"></div>
 
-    <!-- Dialog HTML -->
-    <!-- 
-    <div class="mdwc-dialog mdwc-dialog--scrollable">
-      <div class="mdwc-dialog__scrim">
-        <div class="mdwc-dialog__container">
-          <div class="mdwc-dialog__surface">
-            <h2 class="mdwc-dialog__title">This is the title text</h2>
-            <section class="mdwc-dialog__content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus, nisl rhoncus sagittis ultrices, dui ante ultrices est, ut mattis felis enim vitae odio. Cras et arcu velit. Curabitur sit amet lorem molestie justo rhoncus efficitur non non risus. Pellentesque in est risus. Fusce blandit eget nisl vel vulputate. Etiam molestie bibendum pulvinar. Proin odio sem, pharetra eget lobortis ut, dignissim non orci. Suspendisse in tortor tellus. Nunc in augue porta, sagittis eros a, aliquet neque. Sed efficitur scelerisque felis ut vulputate. Curabitur nisl sapien, mattis in dolor non, dictum rhoncus elit. In hac habitasse platea dictumst.          </p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus, nisl rhoncus sagittis ultrices, dui ante ultrices est, ut mattis felis enim vitae odio. Cras et arcu velit. Curabitur sit amet lorem molestie justo rhoncus efficitur non non risus. Pellentesque in est risus. Fusce blandit eget nisl vel vulputate. Etiam molestie bibendum pulvinar. Proin odio sem, pharetra eget lobortis ut, dignissim non orci. Suspendisse in tortor tellus. Nunc in augue porta, sagittis eros a, aliquet neque. Sed efficitur scelerisque felis ut vulputate. Curabitur nisl sapien, mattis in dolor non, dictum rhoncus elit. In hac habitasse platea dictumst.          </p>
-            </section>
-            <footer class="mdwc-dialog__actions">
-              <button class="mdwc-btn mdwc-btn--text">Cancel</button>
-              <button class="mdwc-btn mdwc-btn--text">Ok</button>
-            </footer>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
-
     <script type="text/template" class="_tmpl-basic">
       <p>Hi, my "name" is {{this.name}}. I'm {{this.profile.age}}. No way!</p>
       {{#if(this.skills)}}
@@ -181,7 +160,7 @@
 
     <script type="text/template" class="_tmpl-table-column-actions">
       <div>
-        <a href="#" onclick="javascript:alert('{{this.name}} is {{this.age}} years old');">
+        <a class="_dataTableActionButton" href="#" data-id={{this._id}}>
         {{#if(this.age < 30)}}
         Initialize
         {{#else}}
@@ -192,7 +171,11 @@
     </script>
 
     <script type="text/template" class="_tmpl-dialog-sample">
-      <div>Hello</div>
+      {{this.content}}
+    </script>
+
+     <script type="text/template" class="_tmpl-dialog-dataTableActionButton">
+      {{this.name}} is {{this.age}} years old. They have {{this.repos}} repos on GitHub.
     </script>
 
     <script src="src/mdwc.core.js"></script>

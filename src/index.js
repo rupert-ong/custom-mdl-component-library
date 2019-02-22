@@ -119,6 +119,28 @@ document
     btn.setAttribute("data-key", key === "1" ? "2" : "1");
   });
 
+document.querySelector("#tableContent").addEventListener("click", function(e) {
+  if (e.target.closest("._dataTableActionButton")) {
+    var data = table.state.data.all.find(function(obj) {
+      return obj._id === e.target.dataset.id;
+    });
+
+     var tableActionButtonDialog = MDWC.dialog(
+      "#dialogContainer",
+      {
+        id: "tableActionDialog",
+        contentTemplateSelector: "._tmpl-dialog-dataTableActionButton",
+        autoOpen: true,
+        buttons: null,
+      },
+      {
+        title: data.name,
+        content: data
+      }
+    );
+  }
+});
+
 // Buttons Example
 document
   .querySelector("._disableButtons")
@@ -143,8 +165,7 @@ document
         autoOpen: true
       },
       {
-        title: "Nope",
-        content: null
+        content: {content: 'Do you wish to continue?'}
       }
     );
   });
