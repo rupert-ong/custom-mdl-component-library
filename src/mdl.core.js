@@ -3,7 +3,7 @@
 var MDL = {};
 
 (function(_NS) {
-  (function polyfill() {
+  function _closestPolyfill() {
     if (!Element.prototype.matches) {
       Element.prototype.matches =
         Element.prototype.msMatchesSelector ||
@@ -21,6 +21,30 @@ var MDL = {};
         return null;
       };
     }
+  }
+
+  function _customEventPolyfill() {
+    if (typeof window.CustomEvent === "function") return false;
+
+    function CustomEvent(event, params) {
+      params = params || { bubbles: false, cancelable: false, detail: null };
+      var evt = document.createEvent("CustomEvent");
+      evt.initCustomEvent(
+        event,
+        params.bubbles,
+        params.cancelable,
+        params.detail
+      );
+      return evt;
+    }
+
+    CustomEvent.prototype = window.Event.prototype;
+    window.CustomEvent = CustomEvent;
+  }
+
+  (function polyfill() {
+    _closestPolyfill();
+    _customEventPolyfill();
   })();
 
   function isObject(obj) {
@@ -125,6 +149,16 @@ var MDL = {};
         rowsPerPage: 10,
         rowsPerPageOpts: [10, 25, 50]
       }
+    },
+    dispatchEvent: function(type, detail) {
+      document.dispatchEvent(type, {
+        detail: detail,
+        bubbles: true,
+        cancelable: true
+      });
+    },
+    event: {
+      DIALOG_CLOSE: "mdl.dialog.close"
     }
   });
 })(MDL);
