@@ -119,6 +119,7 @@ document
     btn.setAttribute("data-key", key === "1" ? "2" : "1");
   });
 
+// Buttons Example
 document
   .querySelector("._disableButtons")
   .addEventListener("click", function(e) {
@@ -130,10 +131,10 @@ document
     }
   });
 
+// Dialog Example
 document
   .querySelector("._tempShowDialog")
   .addEventListener("click", function(e) {
-    // document.querySelector(".mdl-dialog").classList.add("mdl-dialog--open");
     var testDialog = MDL.dialog(
       "#dialogContainer",
       {
@@ -146,9 +147,3 @@ document
       }
     );
   });
-
-/*
-document.querySelector(".mdl-dialog").addEventListener("click", function(e) {
-  this.classList.remove("mdl-dialog--open");
-});
-*/
