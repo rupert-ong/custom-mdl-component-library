@@ -43,7 +43,7 @@
     this.state = {
       config: config,
       data: {
-        all: data,
+        all: this._addIdsToData(data),
         rendered: Array.isArray(data) ? data.slice() : null
       }
     };
@@ -217,8 +217,16 @@
       }
     },
 
+    _addIdsToData: function(data) {
+      if (!Array.isArray(data)) return data;
+      return data.map(function(obj) {
+        obj["_id"] = _NS.utils.generateId();
+        return obj;
+      });
+    },
+
     loadData: function(data) {
-      this.state.data.all = data;
+      this.state.data.all = this._addIdsToData(data);
       this.state.data.rendered = data.slice();
       this.state.config.pagination.current = 1;
       this._sortDataAndRenderTableBody();
