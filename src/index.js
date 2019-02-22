@@ -138,6 +138,7 @@ document
     var testDialog = MDL.dialog(
       "#dialogContainer",
       {
+        id: 'testDialog',
         contentTemplateSelector: "._tmpl-dialog-sample",
         autoOpen: true
       },
@@ -147,3 +148,7 @@ document
       }
     );
   });
+
+document.addEventListener(MDL.event.DIALOG_CLOSE, function(e) {
+  console.log(e.detail);
+});

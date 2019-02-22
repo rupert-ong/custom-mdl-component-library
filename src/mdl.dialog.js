@@ -9,7 +9,7 @@
       scrollable: false,
       buttons: [
         { label: "Cancel", type: "dismissive" },
-        { label: "Ok", type: "confirming", disabled: true }
+        { label: "Ok", type: "confirming" }
       ],
       contentTemplateSelector: null,
       autoOpen: false
@@ -42,12 +42,15 @@
         "click",
         function(e) {
           var target = e.target;
-          if (target.matches("._mdl-dialog-scrim")) {
+          if (
+            target.matches("._mdl-dialog-scrim") ||
+            target.matches("._mdl-dialog-btn")
+          ) {
             this.close();
-          } else if (target.matches("._mdl-dialog-btn")) {
-            if (target.dataset.type === "dismissive") {
-              this.close();
-            }
+            _NS.dispatchEvent(_NS.event.DIALOG_CLOSE, {
+              id: this.state.config.id,
+              type: target.dataset.type
+            });
           }
         }.bind(this)
       );

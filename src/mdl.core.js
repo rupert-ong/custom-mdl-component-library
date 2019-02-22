@@ -151,11 +151,11 @@ var MDL = {};
       }
     },
     dispatchEvent: function(type, detail) {
-      document.dispatchEvent(type, {
+      document.dispatchEvent(new CustomEvent(type, {
         detail: detail,
         bubbles: true,
         cancelable: true
-      });
+      }));
     },
     event: {
       DIALOG_CLOSE: "mdl.dialog.close"
