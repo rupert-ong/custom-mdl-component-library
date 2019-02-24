@@ -41,7 +41,7 @@ h2 {
 .mdwc-btn,
 .mdwc-form-control:not([row]),
 .mdwc-form-select:not([multiple]) {
-  height: 36px;
+  height: 40px;
   white-space: nowrap;
 }
 
@@ -163,11 +163,11 @@ h2 {
   background-repeat: no-repeat;
   background-size: 20px;
   display: inline-block;
-  height: 36px;
+  height: 40px;
   overflow: hidden;
   text-indent: 200%;
   white-space: nowrap;
-  width: 36px;
+  width: 40px;
 }
 
 .mdwc-icon--chevron-right {
@@ -260,9 +260,9 @@ h2 {
 }
 
 .mdwc-table__cell--toggle {
-  max-width: 36px;
+  max-width: 40px;
   padding: 0;
-  width: 36px;
+  width: 40px;
 }
 
 .mdwc-table__details-toggle {
