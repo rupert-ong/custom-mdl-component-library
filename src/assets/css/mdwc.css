@@ -187,6 +187,10 @@ h2 {
   margin-right: 4px;
 }
 
+.mdwc-btn[disabled] .mdwc-icon {
+  opacity: 0.4;
+}
+
 /* Table */
 .mdwc-table {
   border-collapse: collapse;
