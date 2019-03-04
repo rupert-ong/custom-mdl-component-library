@@ -131,9 +131,11 @@
     }
   };
 
-  Pagination.template = document.querySelector("._tmpl-pagination").innerHTML;
+  Pagination.template = document.querySelector(
+    "._mdwc-tmpl-pagination"
+  ).innerHTML;
   Pagination.pageSelectTemplate = document.querySelector(
-    "._tmpl-paginationPageSelect"
+    "._mdwc-tmpl-paginationPageSelect"
   ).innerHTML;
 
   _NS.pagination = function(selector, config) {

@@ -65,9 +65,10 @@
           this.domRef
             .querySelector("._mdwc-dialog")
             .classList.add("mdwc-dialog--open");
-        }.bind(this)
-      //);
-      , 100);
+        }.bind(this),
+        //);
+        100
+      );
     },
 
     close: function() {
@@ -83,7 +84,7 @@
     }
   };
 
-  Dialog.template = document.querySelector("._tmpl-dialog").innerHTML;
+  Dialog.template = document.querySelector("._mdwc-tmpl-dialog").innerHTML;
 
   _NS.dialog = function(selector, config, data) {
     return new Dialog(selector, config, data);

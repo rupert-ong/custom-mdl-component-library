@@ -234,8 +234,8 @@
     }
   };
 
-  Table.template = document.querySelector("._tmpl-table").innerHTML;
-  Table.rowTemplate = document.querySelector("._tmpl-tableRow").innerHTML;
+  Table.template = document.querySelector("._mdwc-tmpl-table").innerHTML;
+  Table.rowTemplate = document.querySelector("._mdwc-tmpl-tableRow").innerHTML;
 
   _NS.table = function(selector, config, data) {
     return new Table(selector, config, data);
