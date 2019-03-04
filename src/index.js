@@ -97,7 +97,12 @@ var table = MDWC.table("#tableContent", {
       sortKey: "bornTimestamp",
       width: "35%"
     },
-    { columnTemplateSelector: "._tmpl-table-column-actions", width: "100px" }
+    {
+      label: "Quantity",
+      columnTemplateSelector: "._tmpl-table-column-quantity",
+      width: "100px"
+    },
+    { columnTemplateSelector: "._tmpl-table-column-actions", width: "50px" }
   ],
   detailsTemplateSelector: "._tmpl-table-details",
   pagination: {
@@ -125,13 +130,13 @@ document.querySelector("#tableContent").addEventListener("click", function(e) {
       return obj._id === e.target.dataset.id;
     });
 
-     var tableActionButtonDialog = MDWC.dialog(
+    var tableActionButtonDialog = MDWC.dialog(
       "#dialogContainer",
       {
         id: "tableActionDialog",
         contentTemplateSelector: "._tmpl-dialog-dataTableActionButton",
         autoOpen: true,
-        buttons: null,
+        buttons: null
       },
       {
         title: data.name,
@@ -165,7 +170,7 @@ document
         autoOpen: true
       },
       {
-        content: {content: 'Do you wish to continue?'}
+        content: { content: "Do you wish to continue?" }
       }
     );
   });

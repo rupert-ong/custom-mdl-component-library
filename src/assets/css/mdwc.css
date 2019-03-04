@@ -167,7 +167,7 @@ h2 {
   display: inline-block;
   height: 40px;
   overflow: hidden;
-  text-indent: 200%;
+  text-indent: 300%;
   white-space: nowrap;
   width: 40px;
 }
@@ -178,6 +178,10 @@ h2 {
 
 .mdwc-icon--chevron-left {
   background-image: url("/src/assets/images/baseline-chevron_left-24px.svg");
+}
+
+.mdwc-icon--edit {
+  background-image: url("/src/assets/images/baseline-edit-24px.svg");
 }
 
 .mdwc-btn .mdwc-icon {

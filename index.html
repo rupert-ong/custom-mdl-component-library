@@ -158,7 +158,7 @@
       <div>This is the template for {{this.repos}}</div>
     </script>
 
-    <script type="text/template" class="_tmpl-table-column-actions">
+    <script type="text/template" class="_tmpl-table-column-quantity">
       <div>
         <a class="_dataTableActionButton" href="#" data-id={{this._id}}>
         {{#if(this.age < 30)}}
@@ -168,6 +168,10 @@
         {{#endif}}
         </a>
       </div>
+    </script>
+
+    <script type="text/template" class="_tmpl-table-column-actions">
+      <button class="mdwc-btn mdwc-btn--icon mdwc-icon--edit">Edit</button>
     </script>
 
     <script type="text/template" class="_tmpl-dialog-sample">
