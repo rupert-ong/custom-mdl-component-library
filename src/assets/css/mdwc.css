@@ -1,6 +1,6 @@
-*,
-*:before,
-*:after {
+.mdwc-app *,
+.mdwc-app *:before,
+.mdwc-app *:after {
   box-sizing: border-box;
 }
 
@@ -8,7 +8,7 @@
   color: red;
 }
 
-body {
+.mdwc-app {
   background-color: #f2f2f2;
   color: #1a1a1a;
   font-family: "Roboto", sans-serif;
