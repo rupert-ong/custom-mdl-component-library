@@ -68,6 +68,8 @@ h2 {
   background-color: rgba(18, 118, 211, 1);
   font-weight: 600;
   color: #fff;
+  display: inline-flex;
+  align-items: center;
 }
 
 .mdwc-btn:focus:not([disabled]),
@@ -176,6 +178,13 @@ h2 {
 
 .mdwc-icon--chevron-left {
   background-image: url("/src/assets/images/baseline-chevron_left-24px.svg");
+}
+
+.mdwc-btn .mdwc-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-right: 4px;
 }
 
 /* Table */
