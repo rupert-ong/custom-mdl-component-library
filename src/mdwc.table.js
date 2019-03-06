@@ -227,7 +227,7 @@
 
     loadData: function(data) {
       this.state.data.all = this._addIdsToData(data);
-      this.state.data.rendered = data.slice();
+      this.state.data.rendered = data ? data.slice() : null;
       this.state.config.pagination.current = 1;
       this._sortDataAndRenderTableBody();
       this.pagination = this._renderPagination();
