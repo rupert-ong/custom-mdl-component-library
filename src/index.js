@@ -136,7 +136,25 @@ document.querySelector("#tableContent").addEventListener("click", function(e) {
         id: "tableActionDialog",
         contentTemplateSelector: "._tmpl-dialog-dataTableActionButton",
         autoOpen: true,
-        buttons: null
+        closeOnOverlayClick: false,
+        buttons: [
+          {
+            label: "Dismiss",
+            type: "dismissive",
+            callback: function() {
+              this.close("dismissive");
+            }
+          },
+          {
+            label: "Accept",
+            type: "confirming",
+            callback: function (a) {
+              console.log(this, a);
+              setTimeout(function(){ this.close("confirming"); }.bind(this), 2000);
+            },
+            callbackArgs: ["apples"]
+          }
+        ]
       },
       {
         title: data.name,

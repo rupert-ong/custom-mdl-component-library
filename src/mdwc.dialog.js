@@ -7,9 +7,16 @@
     var defaultConfig = {
       id: null,
       scrollable: false,
+      closeOnOverlayClick: true,
       buttons: [
-        { label: "Cancel", type: "dismissive" },
-        { label: "Ok", type: "confirming" }
+        {
+          label: "Cancel",
+          type: "dismissive"
+        },
+        {
+          label: "Ok",
+          type: "confirming"
+        }
       ],
       contentTemplateSelector: null,
       autoOpen: false
@@ -42,15 +49,34 @@
         "click",
         function(e) {
           var target = e.target;
+          /*
           if (
             target.matches("._mdwc-dialog-scrim") ||
             target.matches("._mdwc-dialog-btn")
           ) {
-            this.close();
             _NS.dispatchEvent(this.domRef, _NS.event.DIALOG_CLOSE, {
               id: this.state.config.id,
               type: target.dataset.type
             });
+            this.close();
+          }*/
+          if (
+            target.matches("._mdwc-dialog-scrim") &&
+            this.state.config.closeOnOverlayClick
+          ) {
+            this.close(target.dataset.type);
+          } else if (target.matches("._mdwc-dialog-btn")) {
+            var buttonData = this.state.config.buttons[
+              Number(target.dataset.index)
+            ];
+            if (buttonData.callback) {
+              buttonData.callback.apply(
+                this,
+                buttonData.callbackArgs ? buttonData.callbackArgs : []
+              );
+            } else {
+              this.close(target.dataset.type);
+            }
           }
         }.bind(this)
       );
@@ -71,13 +97,20 @@
       );
     },
 
-    close: function() {
+    close: function(type) {
+      var type =
+        typeof type !== "undefined" && typeof type !== "null" ? type : null;
       var dialogElem = this.domRef.querySelector("._mdwc-dialog"),
         transitionEndHandler = function(e) {
           var target = e.target;
           target.removeEventListener("transitionend", transitionEndHandler);
           target.parentNode.removeChild(target);
         };
+
+      _NS.dispatchEvent(this.domRef, _NS.event.DIALOG_CLOSE, {
+        id: this.state.config.id,
+        type: type
+      });
 
       dialogElem.classList.remove("mdwc-dialog--open");
       dialogElem.addEventListener("transitionend", transitionEndHandler, false);
