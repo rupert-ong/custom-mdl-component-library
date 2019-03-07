@@ -138,12 +138,16 @@ document.querySelector('#tableContent').addEventListener('click', function(e) {
         autoOpen: true,
         closeOnOverlayClick: false,
         openCallback: function() {
-          this.domRef.addEventListener('change', function(e) {
-            if (e.target.matches('#checkboxDialog-123')) {
-              this.domRef.querySelector('#tableActionDialogAccept').disabled =
-                !e.target.checked;
-            }
-          }.bind(this));
+          this.domRef.addEventListener(
+            'change',
+            function(e) {
+              if (e.target.matches('#checkboxDialog-123')) {
+                this.domRef.querySelector(
+                  '#tableActionDialogAccept'
+                ).disabled = !e.target.checked;
+              }
+            }.bind(this)
+          );
         },
         buttons: [
           {
@@ -161,12 +165,7 @@ document.querySelector('#tableContent').addEventListener('click', function(e) {
             disabled: true,
             callback: function(a) {
               console.log(this, a);
-              setTimeout(
-                function() {
-                  this.close('confirming');
-                }.bind(this),
-                2000
-              );
+              this.close('confirming');
             },
             callbackArgs: ['apples']
           }
@@ -196,20 +195,37 @@ document
 document
   .querySelector('._tempShowDialog')
   .addEventListener('click', function(e) {
-    var testDialog = MDWC.dialog(
+
+    var testContent = `<p>Lorem ipsum dolor sit amet, no nisl impetus sed. Dicta mnesarchum nam ut, noluisse moderatius voluptatibus pri eu. Ad has constituto instructior. Ne odio habeo vix, eam at dicam constituto. Sumo sadipscing scribentur quo eu, et eos iuvaret forensibus, ex pri omnis doming luptatum.</p>
+
+<p>No porro appareat incorrupte vis, qui ut rebum insolens appellantur. Unum erant pri in. Has nihil malorum in. Quo labores legendos no, ludus tollit eam ad. Graece minimum deterruisset vim te. Eruditi deleniti usu ne. Id sale melius hendrerit has, pro quod dico veniam in, quas dictas nonumes et vis.</p>
+
+<p>Ei mel nemore nusquam adversarium, atomorum intellegam nec an, audiam eripuit neglegentur in eam. Ea quo prima fierent adipisci, dicam laboramus scripserit sit ne. Populo deseruisse te has. Id accusam efficiendi theophrastus cum, cu pri facete expetenda principes. Per dicit ancillae ei, sed dicant partem convenire no, eos euismod facilis cu. Nec congue ceteros atomorum ex, in pro oportere principes.</p>
+
+<p>Lorem ipsum dolor sit amet, no nisl impetus sed. Dicta mnesarchum nam ut, noluisse moderatius voluptatibus pri eu. Ad has constituto instructior. Ne odio habeo vix, eam at dicam constituto. Sumo sadipscing scribentur quo eu, et eos iuvaret forensibus, ex pri omnis doming luptatum.</p>
+
+<p>No porro appareat incorrupte vis, qui ut rebum insolens appellantur. Unum erant pri in. Has nihil malorum in. Quo labores legendos no, ludus tollit eam ad. Graece minimum deterruisset vim te. Eruditi deleniti usu ne. Id sale melius hendrerit has, pro quod dico veniam in, quas dictas nonumes et vis.</p>
+
+<p>Ei mel nemore nusquam adversarium, atomorum intellegam nec an, audiam eripuit neglegentur in eam. Ea quo prima fierent adipisci, dicam laboramus scripserit sit ne. Populo deseruisse te has. Id accusam efficiendi theophrastus cum, cu pri facete expetenda principes. Per dicit ancillae ei, sed dicant partem convenire no, eos euismod facilis cu. Nec congue ceteros atomorum ex, in pro oportere principes.</p>`;
+
+    var scrollableDialog = MDWC.dialog(
       '#dialogContainer',
       {
-        id: 'testDialog',
+        id: 'scrollableDialog',
         contentTemplateSelector: '._tmpl-dialog-sample',
+        scrollable: true,
         autoOpen: false
       },
       {
-        content: { content: 'Do you wish to continue?' }
+        title: 'Titles are optional',
+        content: { content: testContent }
       }
     );
-    testDialog.open();
+    scrollableDialog.open();
   });
 
 document.addEventListener(MDWC.event.DIALOG_CLOSE, function(e) {
+  var content = `Dialog with the identifier of ${e.detail.id} was closed with a ${e.detail.type} action`
+  document.querySelector('._dialogStatus').innerHTML = content;
   console.log(e.detail);
 });
