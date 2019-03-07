@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 (function(_NS) {
   _NS.template = {
@@ -6,7 +6,7 @@
       var re = /{{([^}}]+)?}}/g,
         reControlFlow = /(^#[if|for|else|end])(.*)?/g,
         reTemplate = /(^#render)(.*)?/g,
-        code = "var r=[];\n",
+        code = 'var r=[];\n',
         cursor = 0,
         match;
 
@@ -18,22 +18,22 @@
 
         if (line.match(reTemplate)) {
           code +=
-            "r.push(" +
+            'r.push(' +
             line
-              .replace(/#/g, _NS.name + ".template.")
-              .replace(/\(/g, "(document.querySelector(")
-              .replace(/,/g, ").innerHTML, ")
-              .replace(/\)$/g, "));") +
-            "\n";
+              .replace(/#/g, _NS.name + '.template.')
+              .replace(/\(/g, '(document.querySelector(')
+              .replace(/,/g, ').innerHTML, ')
+              .replace(/\)$/g, '));') +
+            '\n';
         } else if (line.match(reControlFlow)) {
           code +=
             line
-              .replace(/#/g, "")
-              .replace(/\)$/g, "){")
-              .replace(/else/g, "}else{")
-              .replace(/^end.*/g, "}") + "\n";
+              .replace(/#/g, '')
+              .replace(/\)$/g, '){')
+              .replace(/else/g, '}else{')
+              .replace(/^end.*/g, '}') + '\n';
         } else {
-          code += "r.push(" + line + ");\n";
+          code += 'r.push(' + line + ');\n';
         }
         return add;
       };
@@ -45,7 +45,7 @@
 
       add(tpl.substring(cursor));
       code += 'return r.join("");';
-      return new Function(code.replace(/[\r\t\n]/g, "")).apply(data);
+      return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
     }
   };
 })(MDWC);

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 (function(_NS) {
   function Table(selector, userConfig, data) {
@@ -10,7 +10,7 @@
       sort: {
         enabled: true,
         key: null,
-        direction: "asc"
+        direction: 'asc'
       },
       pagination: {
         enabled: true,
@@ -25,15 +25,15 @@
     data = Array.isArray(data) ? data : null;
 
     var sortConfig = config.sort;
-    if (_NS.utils.hasPropertyAndIsTruthy(sortConfig, "enabled")) {
+    if (_NS.utils.hasPropertyAndIsTruthy(sortConfig, 'enabled')) {
       config = _NS.utils.extend(true, config, {
         sort: {
-          key: _NS.utils.hasPropertyAndIsNotEmpty(sortConfig, "key")
+          key: _NS.utils.hasPropertyAndIsNotEmpty(sortConfig, 'key')
             ? sortConfig.key
             : config.columns[0].key,
-          direction: _NS.utils.hasPropertyAndIsNotEmpty(sortConfig, "direction")
+          direction: _NS.utils.hasPropertyAndIsNotEmpty(sortConfig, 'direction')
             ? sortConfig.direction
-            : "asc"
+            : 'asc'
         }
       });
     }
@@ -61,18 +61,18 @@
 
     _renderTableBody: function() {
       document.querySelector(
-        this.selector + "> table > tbody"
+        this.selector + '> table > tbody'
       ).innerHTML = _NS.template.render(Table.rowTemplate, this.state);
     },
 
     _renderPagination: function() {
       if (
         !this.state.config.pagination.enabled ||
-        !_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, "all")
+        !_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, 'all')
       )
         return null;
 
-      var paginationSelector = "._mdwc-table-pagination",
+      var paginationSelector = '._mdwc-table-pagination',
         paginationElem = this.domRef.querySelector(paginationSelector),
         paginationConfig = this.state.config.pagination;
 
@@ -81,7 +81,7 @@
         paginationElem = null;
       }
 
-      var paginationContainer = document.createElement("div");
+      var paginationContainer = document.createElement('div');
       paginationContainer.classList.add(paginationSelector.slice(1));
       this.domRef.appendChild(paginationContainer);
 
@@ -103,17 +103,17 @@
 
     _addEventHandlers: function() {
       this.domRef.addEventListener(
-        "click",
+        'click',
         function(e) {
           var target = e.target;
           if (
-            target.closest("._mdwc-table-th") &&
+            target.closest('._mdwc-table-th') &&
             this.state.config.sort.enabled
           ) {
             this._updateSortView(
-              target.closest("._mdwc-table-th").dataset.sortKey
+              target.closest('._mdwc-table-th').dataset.sortKey
             );
-          } else if (target.matches("._mdwc-table-detailsToggle")) {
+          } else if (target.matches('._mdwc-table-detailsToggle')) {
             this._expandRowDetailsView(target);
           }
         }.bind(this),
@@ -125,10 +125,10 @@
       var sortConfig = this.state.config.sort,
         direction =
           sortConfig.key === key
-            ? sortConfig.direction === "asc"
-              ? "desc"
-              : "asc"
-            : "asc";
+            ? sortConfig.direction === 'asc'
+              ? 'desc'
+              : 'asc'
+            : 'asc';
 
       this._changeStateConfigSort(key, direction);
       this._sortDataAndRenderTableBody();
@@ -140,18 +140,18 @@
 
       var elem = document.querySelector(
         this.selector +
-          " ._mdwc-table > thead ._mdwc-table-th[data-sort-key=" +
+          ' ._mdwc-table > thead ._mdwc-table-th[data-sort-key=' +
           key +
-          "]"
+          ']'
       );
       if (elem === null) return;
 
-      var parentTable = elem.closest("._mdwc-table"),
-        headers = parentTable.querySelectorAll("._mdwc-table-th"),
+      var parentTable = elem.closest('._mdwc-table'),
+        headers = parentTable.querySelectorAll('._mdwc-table-th'),
         i = 0,
-        CLASS_SORT_PREFIX = "mdwc-table__header--sort-",
-        CLASS_SORT_ASC = CLASS_SORT_PREFIX + "asc",
-        CLASS_SORT_DESC = CLASS_SORT_PREFIX + "desc";
+        CLASS_SORT_PREFIX = 'mdwc-table__header--sort-',
+        CLASS_SORT_ASC = CLASS_SORT_PREFIX + 'asc',
+        CLASS_SORT_DESC = CLASS_SORT_PREFIX + 'desc';
 
       for (; i < headers.length; i++) {
         var header = headers[i];
@@ -174,8 +174,8 @@
     },
 
     _expandRowDetailsView: function(elem) {
-      var parentRow = elem.closest("._mdwc-table-row");
-      parentRow.classList.toggle("mdwc-table__row--expanded");
+      var parentRow = elem.closest('._mdwc-table-row');
+      parentRow.classList.toggle('mdwc-table__row--expanded');
     },
 
     _changeStateConfigSort: function(key, direction) {
@@ -202,7 +202,7 @@
         current = paginationConfig.current,
         rowsPerPage = paginationConfig.rowsPerPage;
 
-      if (!_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, "all")) {
+      if (!_NS.utils.hasPropertyAndIsNotEmpty(this.state.data, 'all')) {
         this.state.data.rendered = null;
         return;
       }
@@ -220,7 +220,7 @@
     _addIdsToData: function(data) {
       if (!Array.isArray(data)) return data;
       return data.map(function(obj) {
-        if (!obj.hasOwnProperty("_id")) obj["_id"] = _NS.utils.generateId();
+        if (!obj.hasOwnProperty('_id')) obj['_id'] = _NS.utils.generateId();
         return obj;
       });
     },
@@ -234,8 +234,8 @@
     }
   };
 
-  Table.template = document.querySelector("._mdwc-tmpl-table").innerHTML;
-  Table.rowTemplate = document.querySelector("._mdwc-tmpl-tableRow").innerHTML;
+  Table.template = document.querySelector('._mdwc-tmpl-table').innerHTML;
+  Table.rowTemplate = document.querySelector('._mdwc-tmpl-tableRow').innerHTML;
 
   _NS.table = function(selector, config, data) {
     return new Table(selector, config, data);

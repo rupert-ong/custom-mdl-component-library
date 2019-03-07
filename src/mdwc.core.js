@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var MDWC = {};
 
@@ -24,11 +24,11 @@ var MDWC = {};
   }
 
   function _customEventPolyfill() {
-    if (typeof window.CustomEvent === "function") return false;
+    if (typeof window.CustomEvent === 'function') return false;
 
     function CustomEvent(event, params) {
       params = params || { bubbles: false, cancelable: false, detail: null };
-      var evt = document.createEvent("CustomEvent");
+      var evt = document.createEvent('CustomEvent');
       evt.initCustomEvent(
         event,
         params.bubbles,
@@ -44,7 +44,7 @@ var MDWC = {};
 
   function _arrayFindPolyfill() {
     if (!Array.prototype.find) {
-      Object.defineProperty(Array.prototype, "find", {
+      Object.defineProperty(Array.prototype, 'find', {
         value: function(predicate) {
           if (this == null) {
             throw new TypeError('"this" is null or not defined');
@@ -54,8 +54,8 @@ var MDWC = {};
 
           var len = o.length >>> 0;
 
-          if (typeof predicate !== "function") {
-            throw new TypeError("predicate must be a function");
+          if (typeof predicate !== 'function') {
+            throw new TypeError('predicate must be a function');
           }
 
           var thisArg = arguments[1];
@@ -87,7 +87,7 @@ var MDWC = {};
   function isObject(obj) {
     return (
       obj !== null &&
-      Object.prototype.toString.call(obj).slice(8, -1) === "Object"
+      Object.prototype.toString.call(obj).slice(8, -1) === 'Object'
     );
   }
 
@@ -104,11 +104,11 @@ var MDWC = {};
       var prop = obj[property],
         propPrototype = Object.prototype.toString.call(prop).slice(8, -1);
       switch (propPrototype) {
-        case "Array":
+        case 'Array':
           return prop.length > 0;
-        case "String":
+        case 'String':
           return prop.trim().length > 0;
-        case "Object":
+        case 'Object':
           return Object.keys(prop).length > 0;
         default:
           return true;
@@ -131,7 +131,7 @@ var MDWC = {};
       } else if (sortA < sortB) {
         comparison = -1;
       }
-      return direction == "desc" ? comparison * -1 : comparison;
+      return direction == 'desc' ? comparison * -1 : comparison;
     });
   }
 
@@ -147,7 +147,7 @@ var MDWC = {};
       deep = false,
       i = 0;
 
-    if (Object.prototype.toString.call(arguments[0]) === "[object Boolean]") {
+    if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
       deep = arguments[0];
       i++;
     }
@@ -170,8 +170,8 @@ var MDWC = {};
     return extended;
   }
 
-  var CHARACTERS = "0123456789ABCDEF".split("");
-  var FORMAT = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("");
+  var CHARACTERS = '0123456789ABCDEF'.split('');
+  var FORMAT = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.split('');
   function generateId() {
     var c = CHARACTERS,
       id = FORMAT,
@@ -212,11 +212,11 @@ var MDWC = {};
     id[34] = c[(r >>>= 4) & 0xf];
     id[35] = c[(r >>>= 4) & 0xf];
 
-    return id.join("");
+    return id.join('');
   }
 
   mutate(_NS, {
-    name: "MDWC",
+    name: 'MDWC',
     utils: {
       isObject: isObject,
       hasProperty: hasProperty,
@@ -245,7 +245,7 @@ var MDWC = {};
       );
     },
     event: {
-      DIALOG_CLOSE: "mdwc.dialog.close"
+      DIALOG_CLOSE: 'mdwc.dialog.close'
     }
   });
 })(MDWC);
