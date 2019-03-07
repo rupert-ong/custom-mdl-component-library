@@ -140,6 +140,7 @@ document.querySelector('#tableContent').addEventListener('click', function(e) {
         buttons: [
           {
             label: 'Dismiss',
+            id: 'tableActionDialogDismiss',
             type: 'dismissive',
             callback: function() {
               this.close('dismissive');
@@ -147,7 +148,9 @@ document.querySelector('#tableContent').addEventListener('click', function(e) {
           },
           {
             label: 'Accept',
+            id: 'tableActionDialogAccept',
             type: 'confirming',
+            disabled: true,
             callback: function(a) {
               console.log(this, a);
               setTimeout(
@@ -190,12 +193,13 @@ document
       {
         id: 'testDialog',
         contentTemplateSelector: '._tmpl-dialog-sample',
-        autoOpen: true
+        autoOpen: false
       },
       {
         content: { content: 'Do you wish to continue?' }
       }
     );
+    testDialog.open();
   });
 
 document.addEventListener(MDWC.event.DIALOG_CLOSE, function(e) {
