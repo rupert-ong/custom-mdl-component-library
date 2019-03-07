@@ -19,7 +19,9 @@
         }
       ],
       contentTemplateSelector: null,
-      autoOpen: false
+      autoOpen: false,
+      openCallback: null,
+      openCallbackArgs: null
     };
 
     var config = _NS.utils.extend(true, defaultConfig, userConfig);
@@ -49,17 +51,6 @@
         'click',
         function(e) {
           var target = e.target;
-          /*
-          if (
-            target.matches("._mdwc-dialog-scrim") ||
-            target.matches("._mdwc-dialog-btn")
-          ) {
-            _NS.dispatchEvent(this.domRef, _NS.event.DIALOG_CLOSE, {
-              id: this.state.config.id,
-              type: target.dataset.type
-            });
-            this.close();
-          }*/
           if (
             target.matches('._mdwc-dialog-scrim') &&
             this.state.config.closeOnOverlayClick
@@ -85,14 +76,21 @@
     open: function() {
       this._render();
       this._addEventHandlers();
-      //window.requestAnimationFrame(
+
+      var stateConfig = this.state.config;
+
+      if (stateConfig.openCallback) {
+        stateConfig.openCallback.apply(
+          this,
+          stateConfig.openCallbackArgs ? stateConfig.openCallbackArgs : []
+        );
+      }
       setTimeout(
         function() {
           this.domRef
             .querySelector('._mdwc-dialog')
             .classList.add('mdwc-dialog--open');
         }.bind(this),
-        //);
         100
       );
     },

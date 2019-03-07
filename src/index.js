@@ -137,6 +137,14 @@ document.querySelector('#tableContent').addEventListener('click', function(e) {
         contentTemplateSelector: '._tmpl-dialog-dataTableActionButton',
         autoOpen: true,
         closeOnOverlayClick: false,
+        openCallback: function() {
+          this.domRef.addEventListener('change', function(e) {
+            if (e.target.matches('#checkboxDialog-123')) {
+              this.domRef.querySelector('#tableActionDialogAccept').disabled =
+                !e.target.checked;
+            }
+          }.bind(this));
+        },
         buttons: [
           {
             label: 'Dismiss',
