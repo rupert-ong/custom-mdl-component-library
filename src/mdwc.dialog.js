@@ -28,6 +28,9 @@
 
     this.selector = selector;
     this.domRef = document.querySelector(this.selector);
+    this.contentDomRef = null;
+    this.actionsDomRef = null;
+
     this.state = {
       config: config,
       data: {
@@ -44,6 +47,8 @@
   Dialog.prototype = {
     _render: function() {
       this.domRef.innerHTML = _NS.template.render(Dialog.template, this.state);
+      this.contentDomRef = this.domRef.querySelector('._mdwc-dialog-content');
+      this.actionsDomRef = this.domRef.querySelector('._mdwc-dialog-actions');
     },
 
     _addEventHandlers: function() {
@@ -112,6 +117,8 @@
 
       dialogElem.classList.remove('mdwc-dialog--open');
       dialogElem.addEventListener('transitionend', transitionEndHandler, false);
+      this.contentDomRef = null;
+      this.actionsDomRef = null;
     }
   };
 

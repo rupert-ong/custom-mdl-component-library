@@ -234,7 +234,7 @@ var MDWC = {};
       }
     },
     dispatchEvent: function(elem, type, detail) {
-      if (elem instanceof EventTarget === false || !type) return null;
+      if (elem instanceof Element === false || !type) return null;
 
       elem.dispatchEvent(
         new CustomEvent(type, {

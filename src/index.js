@@ -138,11 +138,12 @@ document.querySelector('#tableContent').addEventListener('click', function(e) {
         autoOpen: true,
         closeOnOverlayClick: false,
         openCallback: function() {
-          this.domRef.addEventListener(
+          this.contentDomRef.addEventListener(
             'change',
             function(e) {
+              console.log('change fired');
               if (e.target.matches('#checkboxDialog-123')) {
-                this.domRef.querySelector(
+                this.actionsDomRef.querySelector(
                   '#tableActionDialogAccept'
                 ).disabled = !e.target.checked;
               }

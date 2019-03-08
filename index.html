@@ -140,31 +140,31 @@
       <div class="_mdwc-dialog mdwc-dialog {{this.config.scrollable ? ' mdwc-dialog--scrollable' : ''}}">
         <div class="_mdwc-dialog-scrim mdwc-dialog__scrim" data-type="dismissive">
           <div class="mdwc-dialog__container">
-            <div class="mdwc-dialog__surface">
+            <div class="_mdwc-dialog-surface mdwc-dialog__surface">
               {{#if(this.data.title)}}
-              <h2 class="mdwc-dialog__title">{{this.data.title}}</h2>
+                <h2 class="mdwc-dialog__title">{{this.data.title}}</h2>
               {{#endif}}
               {{#if(this.config.contentTemplateSelector)}}
-              <section class="mdwc-dialog__content">
-                {{#render(this.config.contentTemplateSelector, this.data.content)}}
-              </section>
+                <section class="_mdwc-dialog-content mdwc-dialog__content">
+                  {{#render(this.config.contentTemplateSelector, this.data.content)}}
+                </section>
               {{#endif}}
               {{#if(Array.isArray(this.config.buttons) && this.config.buttons.length)}}
-              <footer class="mdwc-dialog__actions">
-                {{#for(var i=0; i < this.config.buttons.length; i++)}}
-                <button 
-                  {{#if(this.config.buttons[i].id)}}
-                    id="{{this.config.buttons[i].id}}" 
-                  {{#endif}}
-                  class="_mdwc-dialog-btn mdwc-btn mdwc-btn--text" 
-                  data-index="{{i}}" 
-                  data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}" 
-                  {{this.config.buttons[i].disabled ? ' disabled' : ''}}
-                >
-                    {{this.config.buttons[i].label}}
-                </button>
-                {{#endfor}}
-              </footer>
+                <footer class="_mdwc-dialog-actions mdwc-dialog__actions">
+                  {{#for(var i=0; i < this.config.buttons.length; i++)}}
+                    <button 
+                      {{#if(this.config.buttons[i].id)}}
+                        id="{{this.config.buttons[i].id}}" 
+                      {{#endif}}
+                      class="_mdwc-dialog-btn mdwc-btn mdwc-btn--text" 
+                      data-index="{{i}}" 
+                      data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}" 
+                      {{this.config.buttons[i].disabled ? ' disabled' : ''}}
+                    >
+                      {{this.config.buttons[i].label}}
+                    </button>
+                  {{#endfor}}
+                </footer>
               {{#endif}}
             </div>
           </div>
