@@ -13,8 +13,8 @@ document.querySelector('#content').innerHTML = MDWC.template.render(
 // Table Example
 var testData1 = [
   {
-    name: 'Ketel One',
-    age: 7,
+    name: null,
+    age: null,
     repos: 0,
     born: 'September 3, 2010',
     bornTimestamp: 1283486400000
@@ -39,6 +39,13 @@ var testData1 = [
     repos: 10,
     born: 'March 15, 2016',
     bornTimestamp: 1458014400000
+  },
+  {
+    name: null,
+    age: null,
+    repos: 20,
+    born: 'May 17, 1977',
+    bornTimestamp: 232689600000
   }
 ];
 
@@ -99,7 +106,9 @@ var table = MDWC.table('#tableContent', {
     },
     {
       label: 'Quantity',
+      key: 'repos', // won't render
       columnTemplateSelector: '._tmpl-table-column-quantity',
+      excludeFromSort: true,
       width: '100px'
     },
     { columnTemplateSelector: '._tmpl-table-column-actions', width: '50px' }
@@ -107,8 +116,8 @@ var table = MDWC.table('#tableContent', {
   detailsTemplateSelector: '._tmpl-table-details',
   pagination: {
     // enabled: false,
-    rowsPerPage: 2,
-    rowsPerPageOpts: [1, 2, 4]
+    rowsPerPage: 5,
+    rowsPerPageOpts: [1, 2, 4, 5]
   } /*
   sort: {
     enabled: false
@@ -196,7 +205,6 @@ document
 document
   .querySelector('._tempShowDialog')
   .addEventListener('click', function(e) {
-
     var testContent = `<p>Lorem ipsum dolor sit amet, no nisl impetus sed. Dicta mnesarchum nam ut, noluisse moderatius voluptatibus pri eu. Ad has constituto instructior. Ne odio habeo vix, eam at dicam constituto. Sumo sadipscing scribentur quo eu, et eos iuvaret forensibus, ex pri omnis doming luptatum.</p>
 
 <p>No porro appareat incorrupte vis, qui ut rebum insolens appellantur. Unum erant pri in. Has nihil malorum in. Quo labores legendos no, ludus tollit eam ad. Graece minimum deterruisset vim te. Eruditi deleniti usu ne. Id sale melius hendrerit has, pro quod dico veniam in, quas dictas nonumes et vis.</p>
@@ -226,7 +234,9 @@ document
   });
 
 document.addEventListener(MDWC.event.DIALOG_CLOSE, function(e) {
-  var content = `Dialog with the identifier of ${e.detail.id} was closed with a ${e.detail.type} action`
+  var content = `Dialog with the identifier of ${
+    e.detail.id
+  } was closed with a ${e.detail.type} action`;
   document.querySelector('._dialogStatus').innerHTML = content;
   console.log(e.detail);
 });

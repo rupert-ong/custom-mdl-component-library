@@ -126,12 +126,16 @@ var MDWC = {};
         sortB = key ? b[key] : b,
         comparison = 0;
 
-      if (sortA > sortB) {
+      if (sortA > sortB || (sortB === null && typeof sortA === 'string')) {
         comparison = 1;
-      } else if (sortA < sortB) {
+      } else if (
+        sortA < sortB ||
+        (sortA === null && typeof sortB === 'string')
+      ) {
         comparison = -1;
       }
-      return direction == 'desc' ? comparison * -1 : comparison;
+
+      return direction === 'desc' ? comparison * -1 : comparison;
     });
   }
 

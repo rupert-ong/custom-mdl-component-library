@@ -96,7 +96,9 @@
       			{{#for(var i=0; i < this.config.columns.length; i++)}}
       			<th
               class="_mdwc-table-th mdwc-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdwc-table__header--numeric{{#endif}}"
-              {{#if(this.config.sort.enabled)}} data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"{{#endif}}
+              {{#if(this.config.sort.enabled && !this.config.columns[i].excludeFromSort && (this.config.columns[i].sortKey || this.config.columns[i].key))}} 
+                data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"
+              {{#endif}}
               {{#if(this.config.columns[i].width)}} style="width:{{this.config.columns[i].width}}"{{#endif}}
             >
               {{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdwc-table__sort-icon"></span>{{#endif}}
