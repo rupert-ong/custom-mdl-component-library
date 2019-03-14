@@ -12,6 +12,7 @@
         key: null,
         direction: 'asc'
       },
+      zebraStriping: false,
       pagination: {
         enabled: true,
         rowsPerPage: _NS.defaults.pagination.rowsPerPage,

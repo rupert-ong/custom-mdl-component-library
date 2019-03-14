@@ -114,6 +114,7 @@ var table = MDWC.table('#tableContent', {
     { columnTemplateSelector: '._tmpl-table-column-actions', width: '50px' }
   ],
   detailsTemplateSelector: '._tmpl-table-details',
+  zebraStriping: true,
   pagination: {
     // enabled: false,
     rowsPerPage: 5,

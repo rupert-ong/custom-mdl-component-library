@@ -99,7 +99,9 @@
               {{#if(this.config.sort.enabled && !this.config.columns[i].excludeFromSort && (this.config.columns[i].sortKey || this.config.columns[i].key))}} 
                 data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"
               {{#endif}}
-              {{#if(this.config.columns[i].width)}} style="width:{{this.config.columns[i].width}}"{{#endif}}
+              {{#if(this.config.columns[i].width || this.config.columns[i].minWidth)}}
+                style="{{this.config.columns[i].width ? 'width:' + this.config.columns[i].width + ';' : ''}}{{this.config.columns[i].minWidth ? ' min-width:' + this.config.columns[i].minWidth + ';' : ''}}"
+              {{#endif}}
             >
               {{this.config.columns[i].label}}{{#if(this.config.sort.enabled)}}<span class="mdwc-table__sort-icon"></span>{{#endif}}
             </th>
@@ -113,7 +115,7 @@
     </script>
 
     <script type="text/template" class="_mdwc-tmpl-tableRow">
-      {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdwc-table-row mdwc-table__row">
+      {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdwc-table-row mdwc-table__row{{#if(this.config.zebraStriping && i%2==0)}} mdwc-table__row--zebra-striping{{#endif}}">
       	{{#if(this.config.detailsTemplateSelector)}}<td class="mdwc-table__cell mdwc-table__cell--toggle"><span class="_mdwc-table-detailsToggle mdwc-btn mdwc-btn--icon mdwc-table__details-toggle"></span></td>{{#endif}}
               {{#for(var j=0; j < this.config.columns.length; j++)}}
             		<td class="mdwc-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdwc-table__cell--numeric{{#endif}}">
@@ -126,7 +128,7 @@
             	{{#endfor}}
             	</tr>
           {{#if(this.config.detailsTemplateSelector)}}
-          <tr class="_mdwc-table-rowDetails mdwc-table__row-details">
+          <tr class="_mdwc-table-rowDetails mdwc-table__row-details{{#if(this.config.zebraStriping && i%2==0)}} mdwc-table__row--zebra-striping{{#endif}}">
           	<td class="mdwc-table__cell" colspan="{{this.config.columns.length + 1}}">{{#render(this.config.detailsTemplateSelector, this.data.rendered[i])}}</td>
           </tr>
           {{#endif}}
