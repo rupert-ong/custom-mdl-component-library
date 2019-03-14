@@ -11,7 +11,7 @@
 .mdwc-app {
   background-color: #f2f2f2;
   color: #1a1a1a;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 16px;
 }
@@ -22,6 +22,39 @@ section {
 
 h2 {
   font-weight: 500;
+}
+
+/* Ripple */
+.mdwc-btn,
+.mdwc-ripple {
+  overflow: hidden;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+}
+
+.mdwc-btn::after,
+.mdwc-ripple::after {
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: scale(10, 10);
+  transition: transform 0.5s, opacity 1s;
+  width: 100%;
+}
+
+.mdwc-btn:active::after,
+.mdwc-ripple:active::after {
+  opacity: 0.3;
+  transform: scale(0, 0);
+  transition: 0s;
 }
 
 /* Card */
@@ -150,7 +183,7 @@ h2 {
 }
 
 .mdwc-form-select:not([multiple]) {
-  background: url("/src/assets/images/baseline-arrow_drop_down-24px.svg")
+  background: url('/src/assets/images/baseline-arrow_drop_down-24px.svg')
     no-repeat center right/20px;
   padding-right: 20px;
 }
@@ -173,15 +206,15 @@ h2 {
 }
 
 .mdwc-icon--chevron-right {
-  background-image: url("/src/assets/images/baseline-chevron_right-24px.svg");
+  background-image: url('/src/assets/images/baseline-chevron_right-24px.svg');
 }
 
 .mdwc-icon--chevron-left {
-  background-image: url("/src/assets/images/baseline-chevron_left-24px.svg");
+  background-image: url('/src/assets/images/baseline-chevron_left-24px.svg');
 }
 
 .mdwc-icon--edit {
-  background-image: url("/src/assets/images/baseline-edit-24px.svg");
+  background-image: url('/src/assets/images/baseline-edit-24px.svg');
 }
 
 .mdwc-btn .mdwc-icon {
@@ -268,12 +301,12 @@ h2 {
 
 .mdwc-table__header--sort-asc .mdwc-table__sort-icon,
 .mdwc-table__header--sort-desc .mdwc-table__sort-icon {
-  background: url("/src/assets/images/baseline-arrow_upward-24px.svg") center
+  background: url('/src/assets/images/baseline-arrow_upward-24px.svg') center
     center/16px no-repeat;
 }
 
 .mdwc-table__header--sort-desc .mdwc-table__sort-icon {
-  background-image: url("/src/assets/images/baseline-arrow_downward-24px.svg");
+  background-image: url('/src/assets/images/baseline-arrow_downward-24px.svg');
 }
 
 .mdwc-table__cell--toggle {
@@ -283,11 +316,11 @@ h2 {
 }
 
 .mdwc-table__details-toggle {
-  background-image: url("/src/assets/images/baseline-expand_more-24px.svg");
+  background-image: url('/src/assets/images/baseline-expand_more-24px.svg');
 }
 
 .mdwc-table__row--expanded .mdwc-table__details-toggle {
-  background-image: url("/src/assets/images/baseline-expand_less-24px.svg");
+  background-image: url('/src/assets/images/baseline-expand_less-24px.svg');
 }
 
 .mdwc-table__row-details > td:first-child {
