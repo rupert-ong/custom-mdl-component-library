@@ -18,6 +18,12 @@
         rowsPerPage: _NS.defaults.pagination.rowsPerPage,
         rowsPerPageOpts: _NS.defaults.pagination.rowsPerPageOpts.slice(),
         current: 1
+      },
+      rows: {
+        id: {
+          prefix: null,
+          key: null
+        }
       }
     };
 

@@ -13,6 +13,7 @@ document.querySelector('#content').innerHTML = MDWC.template.render(
 // Table Example
 var testData1 = [
   {
+    id: 1,
     name: null,
     age: null,
     repos: 0,
@@ -20,6 +21,7 @@ var testData1 = [
     bornTimestamp: 1283486400000
   },
   {
+    id: 2,
     name: 'Yellowstone Bourbon',
     age: 50,
     repos: 205,
@@ -27,6 +29,7 @@ var testData1 = [
     bornTimestamp: -51307200000
   },
   {
+    id: 3,
     name: 'Carpano Antica Formula',
     age: 255,
     repos: 9831,
@@ -34,6 +37,7 @@ var testData1 = [
     bornTimestamp: -6500631838000
   },
   {
+    id: 4,
     name: 'Mezcal Creyente',
     age: 2,
     repos: 10,
@@ -41,6 +45,7 @@ var testData1 = [
     bornTimestamp: 1458014400000
   },
   {
+    id: 5,
     name: null,
     age: null,
     repos: 20,
@@ -51,6 +56,7 @@ var testData1 = [
 
 var testData2 = [
   {
+    id: 1,
     name: 'Jim Bean',
     age: 56,
     repos: 1,
@@ -58,6 +64,7 @@ var testData2 = [
     bornTimestamp: -207864000000
   },
   {
+    id: 2,
     name: 'Bombay Sapphire',
     age: 18,
     repos: 10,
@@ -65,6 +72,7 @@ var testData2 = [
     bornTimestamp: 969681600000
   },
   {
+    id: 3,
     name: 'Tan Gueray',
     repos: 1,
     age: 36,
@@ -72,6 +80,7 @@ var testData2 = [
     bornTimestamp: 390283200000
   },
   {
+    id: 4,
     name: 'Beef Eater',
     repos: 2,
     age: 41,
@@ -79,6 +88,7 @@ var testData2 = [
     bornTimestamp: 229496400000
   },
   {
+    id: 5,
     name: 'Aviator Gin',
     repos: 25,
     age: 41,
@@ -86,6 +96,7 @@ var testData2 = [
     bornTimestamp: 228718800000
   },
   {
+    id: 6,
     name: 'Mac Allan',
     repos: 3,
     age: 0,
@@ -115,6 +126,12 @@ var table = MDWC.table('#tableContent', {
   ],
   detailsTemplateSelector: '._tmpl-table-details',
   zebraStriping: true,
+  rows: {
+    id: {
+      prefix: 'sid',
+      key: 'id'
+    }
+  },
   pagination: {
     // enabled: false,
     rowsPerPage: 5,

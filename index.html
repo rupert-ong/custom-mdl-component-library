@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Component Library</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,600,600i"
+      rel="stylesheet"
+    />
+    <link href="src/assets/css/mdwc.css" type="text/css" rel="stylesheet" />
+  </head>
 
-<head>
-	<title>Component Library</title>
-	<meta charset="UTF-8" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,600,600i" rel="stylesheet">
-	<link href="src/assets/css/mdwc.css" type="text/css" rel="stylesheet" />
-</head>
+  <body class="mdwc-app">
+    <section>
+      <div class="mdwc-card">
+        <h2>Template Example</h2>
+        <div id="content"></div>
+      </div>
+    </section>
 
-<body class="mdwc-app">
-	<section>
-		<div class="mdwc-card">
-			<h2>Template Example</h2>
-			<div id="content"></div>
-		</div>
-	</section>
-
-	<section>
-		<div class="mdwc-card">
-			<h2>Table Example</h2>
-			<div class="_btnContainer">
-				<button class="_changeTableData mdwc-btn" data-key="1">
+    <section>
+      <div class="mdwc-card">
+        <h2>Table Example</h2>
+        <div class="_btnContainer">
+          <button class="_changeTableData mdwc-btn" data-key="1">
             Change Data
           </button>
           <button class="_disableButtons mdwc-btn mdwc-btn--outlined">
@@ -34,9 +36,14 @@
 
     <section>
       <div class="mdwc-card">
-			  <h2>Dialog Example</h2>
-        <button class="_tempShowDialog mdwc-btn mdwc-btn--text"><i class="mdwc-icon mdwc-icon--chevron-right">Arrow</i>Show Scrollable Dialog</button>
-        <p class="_dialogStatus">Status of the last closed dialog appears here</p>
+        <h2>Dialog Example</h2>
+        <button class="_tempShowDialog mdwc-btn mdwc-btn--text">
+          <i class="mdwc-icon mdwc-icon--chevron-right">Arrow</i>Show Scrollable
+          Dialog
+        </button>
+        <p class="_dialogStatus">
+          Status of the last closed dialog appears here
+        </p>
       </div>
     </section>
 
@@ -96,7 +103,7 @@
       			{{#for(var i=0; i < this.config.columns.length; i++)}}
       			<th
               class="_mdwc-table-th mdwc-table__header {{#if(this.config.columns[i].type === 'numeric')}}mdwc-table__header--numeric{{#endif}}"
-              {{#if(this.config.sort.enabled && !this.config.columns[i].excludeFromSort && (this.config.columns[i].sortKey || this.config.columns[i].key))}} 
+              {{#if(this.config.sort.enabled && !this.config.columns[i].excludeFromSort && (this.config.columns[i].sortKey || this.config.columns[i].key))}}
                 data-sort-key="{{this.config.columns[i].sortKey ? this.config.columns[i].sortKey : this.config.columns[i].key}}"
               {{#endif}}
               {{#if(this.config.columns[i].width || this.config.columns[i].minWidth)}}
@@ -115,7 +122,11 @@
     </script>
 
     <script type="text/template" class="_mdwc-tmpl-tableRow">
-      {{#if(this.data.rendered)}} {{#for(var i=0; i < this.data.rendered.length; i++)}} <tr class="_mdwc-table-row mdwc-table__row{{#if(this.config.zebraStriping && i%2==0)}} mdwc-table__row--zebra-striping{{#endif}}">
+      {{#if(this.data.rendered)}}
+        {{#for(var i=0; i < this.data.rendered.length; i++)}}
+        <tr
+          {{#if(this.config.rows.id.prefix && this.config.rows.id.key)}}id="{{this.config.rows.id.prefix}}-{{this.data.rendered[i][this.config.rows.id.key]}}" {{#endif}}
+          class="_mdwc-table-row mdwc-table__row{{#if(this.config.zebraStriping && i%2==0)}} mdwc-table__row--zebra-striping{{#endif}}">
       	{{#if(this.config.detailsTemplateSelector)}}<td class="mdwc-table__cell mdwc-table__cell--toggle"><span class="_mdwc-table-detailsToggle mdwc-btn mdwc-btn--icon mdwc-table__details-toggle"></span></td>{{#endif}}
               {{#for(var j=0; j < this.config.columns.length; j++)}}
             		<td class="mdwc-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdwc-table__cell--numeric{{#endif}}">
@@ -156,13 +167,13 @@
               {{#if(Array.isArray(this.config.buttons) && this.config.buttons.length)}}
                 <footer class="_mdwc-dialog-actions mdwc-dialog__actions">
                   {{#for(var i=0; i < this.config.buttons.length; i++)}}
-                    <button 
+                    <button
                       {{#if(this.config.buttons[i].id)}}
-                        id="{{this.config.buttons[i].id}}" 
+                        id="{{this.config.buttons[i].id}}"
                       {{#endif}}
-                      class="_mdwc-dialog-btn mdwc-btn mdwc-btn--text" 
-                      data-index="{{i}}" 
-                      data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}" 
+                      class="_mdwc-dialog-btn mdwc-btn mdwc-btn--text"
+                      data-index="{{i}}"
+                      data-type="{{this.config.buttons[i].type === 'confirming' ? 'confirming' : 'dismissive'}}"
                       {{this.config.buttons[i].disabled ? ' disabled' : ''}}
                     >
                       {{this.config.buttons[i].label}}
@@ -200,7 +211,7 @@
       {{this.content}}
     </script>
 
-     <script type="text/template" class="_tmpl-dialog-dataTableActionButton">
+    <script type="text/template" class="_tmpl-dialog-dataTableActionButton">
       <p>{{this.name}} is {{this.age}} years old. They have {{this.repos}} repos on GitHub.</p>
       <form>
         <input type="checkbox" id="checkboxDialog-123" /><label for="checkboxDialog-123">I consent to terms above</label>

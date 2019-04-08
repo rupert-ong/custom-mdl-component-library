@@ -1,6 +1,6 @@
 'use strict';
 
-var MDWC = {};
+window.MDWC = {};
 
 (function(_NS) {
   function _closestPolyfill() {
