@@ -129,7 +129,7 @@
           class="_mdwc-table-row mdwc-table__row{{#if(this.config.zebraStriping && i%2==0)}} mdwc-table__row--zebra-striping{{#endif}}">
       	{{#if(this.config.detailsTemplateSelector)}}<td class="mdwc-table__cell mdwc-table__cell--toggle"><span class="_mdwc-table-detailsToggle mdwc-btn mdwc-btn--icon mdwc-table__details-toggle"></span></td>{{#endif}}
               {{#for(var j=0; j < this.config.columns.length; j++)}}
-            		<td class="mdwc-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdwc-table__cell--numeric{{#endif}}">
+            		<td class="mdwc-table__cell {{#if(this.config.columns[j].type === 'numeric')}}mdwc-table__cell--numeric{{#endif}} {{#if(this.config.columns[j].nowrap)}}mdwc-table__cell--nowrap{{#endif}}">
                   {{#if(this.config.columns[j].columnTemplateSelector)}}
                {{#render(this.config.columns[j].columnTemplateSelector, this.data.rendered[i])}}
                   {{#else}}

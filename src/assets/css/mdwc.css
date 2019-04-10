@@ -267,6 +267,10 @@ h2 {
   text-align: right;
 }
 
+.mdwc-table__cell--nowrap {
+  white-space: nowrap;
+}
+
 .mdwc-table--sortable .mdwc-table__cell--numeric {
   padding-right: 32px;
 }

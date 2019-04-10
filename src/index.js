@@ -107,7 +107,7 @@ var testData2 = [
 
 var table = MDWC.table('#tableContent', {
   columns: [
-    { label: 'Name', key: 'name' },
+    { label: 'Name', key: 'name', nowrap: true },
     { label: 'Age', key: 'age', type: 'numeric', width: '2%' },
     {
       label: 'Birthday',
